@@ -116,7 +116,20 @@ body::-webkit-scrollbar {
     margin: 0;
 
 }
-
+.text-on-image{
+    background-color: #eadfdf;
+    z-index: 2;
+}
+.text-on-image p{
+    position: absolute;
+    top: 25%;
+    left: 10%;
+    text-transform: uppercase;
+    font-size: 4em;
+    font-weight: 600;
+    color: white;
+    text-shadow: 2px;
+}
 #parallaxSlider{
     position: relative;
     padding-left: 30px;
@@ -140,8 +153,12 @@ body::-webkit-scrollbar {
     height: 40vmin;
     object-fit: cover;
     object-position: 100% center;
+    opacity: 1;
 }
 
+.image :hover{
+    opacity: 0.5;
+}
 .topnav h2 {
     padding-left: 100px;
     padding-right: 1%;
@@ -234,19 +251,8 @@ body h1 {
 }
 
 footer {
-    box-shadow: inset 2px 2px 6px 3px rgba(209, 204, 204, 0.5);
+    box-shadow:   1px 1px 6px 3px rgba(209, 204, 204, 0.5);
 
-}
-
-body .mainimage p {
-    position: absolute;
-    top: 25%;
-    left: 10%;
-    text-transform: uppercase;
-    font-size: 4em;
-    font-weight: 600;
-    color: white;
-    text-shadow: 2px;
 }
 
 table {
