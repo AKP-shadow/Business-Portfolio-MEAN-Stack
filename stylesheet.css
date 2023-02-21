@@ -1,7 +1,8 @@
-
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap"  );
 body{
     margin: 0;
-}
+    font-family:'Merriweather', Courier, monospace;
+}   
 
 .sign-in {
     position: relative;
@@ -140,8 +141,9 @@ body::-webkit-scrollbar {
 .text-on-image {
     margin: 0;
     top: 45%;
+    filter: blur(0);
     left: 15%;
-    position: relative;
+    position: absolute;
     width: 600px;
     background-color: rgba(0,0,0,0.65);
     height: 200px;
@@ -187,9 +189,12 @@ body::-webkit-scrollbar {
     /* opacity: 1; */
 }
 
-#parallaxSlider #img_track .image:hover {
+#parallaxSlider #img_track .image:hover   {
     opacity: 0.5;
 }
+
+
+
 .topnav a{
     position: relative;
     right: 0;
@@ -309,6 +314,7 @@ body h1 {
 #mainimage {
     background-image: url("https://c1.wallpaperflare.com/preview/201/893/181/grinder-industry-steel-machine.jpg");
     width: auto;
+    filter: blur(2px);
     background-repeat: no-repeat;
     background-size: 100%;
     height: 690px;
@@ -416,7 +422,12 @@ td {
   }
   
  #services{
-    background-color: rgba(0, 0, 0, 0.15)
+
+    align-items: center;
+    height: 95vh;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.35);
+    box-shadow: 0 8px 8px -4px rgb(100, 101, 102);
      
  }
 
@@ -429,17 +440,23 @@ td {
     justify-content: center;
     text-align: center;
     background-color: rgba(0,0,0,0.65);
-    position: absolute;
+    position: relative;
     bottom: 0;
-    opacity: 0;
+}
+.readmore p{
+    position: relative;
+    margin: 0;
+ top: 40%;
+
 }
  
  
+ 
 #about{
-    height: 100vh;
+    height: 85vh;
     font-size: 2em;
     padding: 30px;
-    background-color: #373232;
+    background-color: rgba(0,0,0,0.85);
     display: grid;
     align-content: center;
     position: relative;
@@ -459,4 +476,56 @@ td {
 opacity: 1;
 filter: blur(0);
 transform: translateX(0);
+}
+
+#progress{
+    height: 85vh;
+    font-size: 2em;
+    padding: 30px;
+    background-color: rgba(0,0,0,0.65);
+    display: grid;
+    align-content: center;
+    position: relative;
+    place-items: center;
+    color: white;
+    box-shadow: 0 8px 8px -4px rgb(69, 71, 72);
+}
+
+#portfolio{
+    height: 85vh;
+    font-size: 2em;
+    padding: 30px;
+    background-color: rgba(0,0,0,0.25);
+    align-content: center;
+    position: relative;
+    place-items: center;
+    color: white;
+    box-shadow: 0 8px 8px -4px rgb(69, 71, 72);
+}
+.job  {
+    display:inline-flex;
+    padding-left: 20px;
+    padding-right: 20px;
+    justify-content: space-between;
+    /* position: relative; */
+    flex-flow: row wrap;
+}
+.job img{
+    transform: rotate(20px);
+    width: 50vh;
+    height: 60vh;
+}
+
+.info{
+    background-color: #f4511e;
+    padding: 15px 10px 15px 10px;
+    position: absolute;
+    top: 50%;
+    left: 28%;
+    /* display: none; */
+}
+.info a{
+    text-decoration: none;
+    color: white;
+
 }

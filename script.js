@@ -23,4 +23,5 @@ hiddenele.forEach((element) => observer.observe(element));
 
 
 
+jobs = document.querySelectorAll("job")
 
