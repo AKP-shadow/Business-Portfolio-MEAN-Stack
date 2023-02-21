@@ -1,45 +1,26 @@
- track = document.getElementById("img_track");
 
- handleOnDown = e => track.dataset.mouseDownAt = e.clientX;
 
- handleOnUp = () => {
-  track.dataset.mouseDownAt = "0";  
-  track.dataset.prevPercentage = track.dataset.percentage;
-}
-
- handleOnMove = e => {
-  if(track.dataset.mouseDownAt === "0") return;
+observer = new IntersectionObserver((entries) => {
   
-   mouseDelta = parseFloat(track.dataset.mouseDownAt) - e.clientX,
-        maxDelta = window.innerWidth / 2;
-  
-   percentage = (mouseDelta / maxDelta) * -100,
-        nextPercentageUnconstrained = parseFloat(track.dataset.prevPercentage) + percentage,
-        nextPercentage = Math.max(Math.min(nextPercentageUnconstrained, 10), -40);
-  
-  track.dataset.percentage = nextPercentage;
-  
-  track.animate({
-    transform: `translate(${nextPercentage}%, 0%)`
-  }, { duration: 1200, fill: "forwards" });
-  
-  for( image of track.getElementsByClassName("image")) {
-    image.animate({
-      objectPosition: `${100 + nextPercentage}% center`
-    }, { duration: 1200, fill: "forwards" });
-  }
-}
+  entries.forEach(entry => {
+    console.log(entry.target);
+    if (entry.isIntersecting) {
+      entry.target.classList.add('show');
 
-/* -- Had to add extra lines for touch events -- */
+    }
+    else {
+      entry.target.classList.remove('show');
 
-window.onmousedown = e => handleOnDown(e);
+    }
 
-window.ontouchstart = e => handleOnDown(e.touches[0]);
 
-window.onmouseup = e => handleOnUp(e);
+  });
+});
 
-window.ontouchend = e => handleOnUp(e.touches[0]);
+hiddenele = document.querySelectorAll(".hidden")
+hiddenele.forEach((element) => observer.observe(element));
 
-window.onmousemove = e => handleOnMove(e);
 
-window.ontouchmove = e => handleOnMove(e.touches[0]);
+
+
+

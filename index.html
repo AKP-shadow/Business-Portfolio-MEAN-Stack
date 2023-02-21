@@ -4,66 +4,127 @@
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="stylesheet.css">
-    <title>Flow of a webpage content</title>
-    <nav>
-        <div class="topnav">
-            <img src="https://dummyimage.com/50x50/fff/000&text=logo">
-            <h2 style="font-size: larger;">YEET HERE</h2>
-            <i class="fa fa-search"></i>
-            <input type="text" placeholder="Search something">
-            <div class="dropdown">
-                <a class="avatarmenu"><img class="avatar" src="man.png" alt=""> </a>
-                <div class="dropdown-content">
-                    <a href="">Profile</a>
-                    <a href="">Your posts</a>
-                    <a href="">Notifications</a>
-                    <!-- <hr> -->
-                    <a href="">Sign in</a>
-                </div>
-            </div>
+    <title>AK Industries - Engineering services</title>
 
 
-        </div>
 
-    </nav>
 </head>
 
 <body>
-    <div class="mainimage">
-        <p>"Growing in the industry<br> since 2005"</p>
-    </div>
-    <p class="subtitle">State-of-the-art Tools</p>
+    <section id="navigation">
+        <div class="nav-container">
+            <div class="brand">
+                <a href="#!">AK Industries</a>
+            </div>
+            <nav>
+                <div class="nav-mobile"><a id="nav-toggle" href="#!"><span></span></a></div>
+                <ul class="nav-list">
+                    <li>
+                        <a href="#!">Home</a>
+                    </li>
+                    <li>
+                        <a href="#!">About</a>
+                    </li>
+                    <li>
+                        <a href="#!">Services</a>
 
-    <div id="parallaxSlider">
-        <div id="img_track" data-mouse-down-at="0" data-prev-percentage="0">
-            <img class="image" draggable="false"
-                src="https://media.istockphoto.com/id/98459248/photo/caliper-construction-plan.jpg?s=612x612&w=0&k=20&c=X-kehsnj8QgEP1cHFF5soa-Ylq5_v942yFe0g83NvY0="
-                alt="">
-            <img class="image" draggable="false"
-                src="https://images.unsplash.com/photo-1603138519910-9a3813cc0ca6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8ZHJpbGwlMjBtYWNoaW5lfGVufDB8fDB8fA%3D%3D&w=1000&q=80"
-                alt="">
-            <img class="image" draggable="false"
-                src="https://ravimachines.com/wp-content/uploads/2016/07/Bench-Grinder-0.5-HP-scaled.jpg" alt="">
-            <img class="image" draggable="false"
-                src="https://5.imimg.com/data5/QE/WS/JV/SELLER-688357/standard-series-lathe-machine-1000x1000.JPG"
-                alt="">
-            <img class="image" draggable="false"
-                src="https://ravimachines.com/wp-content/uploads/2019/08/Welding-Machine-200-ARC-scaled.jpg" alt="">
-            <img class="image" draggable="false"
-                src="https://d3eeke16mv0lt7.cloudfront.net/sites/default/files/styles/article_hero_image/public/field/image/chaos-testing-tools.jpg?itok=PtIklEX1"
-                alt="">
-            <img class="image" draggable="false"
-                src="https://www.reliance-foundry.com/wp-content/uploads/Bearings-1.jpg" alt="">
+                    </li>
+                    <li>
+                        <a href="#!">Portfolio</a>
+
+                    </li>
+                    <li>
+                        <a href="#!">Contact</a>
+                    </li>
+                    <li id="signbutton">
+                        <button class="sign-in"><span>Sign in</span></button>
+                    </li>
+                </ul>
+            </nav>
         </div>
+    </section>
+    <div id="mainimage"  >
+        <div class="text-on-image">
+            <p>"Growing in the industry<br><br> since 2005"</p>
+
+            <div id="call" ">
+                <button class=" sign-in" style="position: relative;
+                top: 200px;width:50%;
+                  "> <span>Make a Call</span></button>
+            </div>
+            <div id="req">
+                <button class="sign-in" style="    position: relative;
+                top: 200px;border: radius 10px; width:50%"><span>Request Service</span></button>
+            </div>
+        </div>
+
     </div>
-    <div class="textcontent">
+    <div   id="about">
+        <h2 class="hidden">About...</h2>
+        <p class="hidden">Our mission is to provide high-quality engineering services to our clients, helping them to achieve their
+            goals efficiently and effectively. We strive to be a reliable and trusted partner for our clients, providing
+            them with innovative solutions and outstanding customer service.</p>
+
+    </div>
+    <div id="services" >
+        <p class="hidden" id="subtitle" style="letter-spacing: 2px;">Services</p>
+
+        <div id="parallaxSlider" class="hidden" >
+            <div id="img_track" data-mouse-down-at="0" data-prev-percentage="0">
+                <div class="servicelist" id="servicelis">
+                    <img class="image" draggable="false"
+                        src="https://media.istockphoto.com/id/98459248/photo/caliper-construction-plan.jpg?s=612x612&w=0&k=20&c=X-kehsnj8QgEP1cHFF5soa-Ylq5_v942yFe0g83NvY0="
+                        alt="">
+                    <div class="readmore" id="readmor">dasdasd</div>
+                </div>
+
+                <div class="servicelist"><img class="image" draggable="false"
+                        src="https://leaksealing.com/wp-content/uploads/2016/06/DSC00049.jpg" alt="">
+
+                    <div class="readmore"></div>
+                </div>
+                <div class="servicelist"><img class="image" draggable="false"
+                        src="https://ravimachines.com/wp-content/uploads/2016/07/Bench-Grinder-0.5-HP-scaled.jpg"
+                        alt="">
+                    <div class="readmore"></div>
+                </div>
+                <div class="servicelist"><img class="image" draggable="false"
+                        src="https://5.imimg.com/data5/QE/WS/JV/SELLER-688357/standard-series-lathe-machine-1000x1000.JPG"
+                        alt="">
+
+                    <div class="readmore"></div>
+                </div>
+                <div class="servicelist"><img class="image" draggable="false"
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKBhUUOKpoHTAcITGrKm1woMrVZqFuF1ROpQ&usqp=CAU"
+                        alt="">
+                    <div class="readmore"></div>
+                </div>
+                <div class="servicelist"><img class="image" draggable="false"
+                        src="https://d3eeke16mv0lt7.cloudfront.net/sites/default/files/styles/article_hero_image/public/field/image/chaos-testing-tools.jpg?itok=PtIklEX1"
+                        alt="">
+
+                    <div class="readmore"></div>
+                </div>
+                <div class="servicelist"><img class="image" draggable="false"
+                        src="https://www.reliance-foundry.com/wp-content/uploads/Bearings-1.jpg" alt="">
+                    <div class="readmore"></div>
+                </div>
+
+
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- <div class="hidden" id="textcontent">
         <div class="bodycontent">
 
 
             <div id="maincontent">
                 <h1>Why Lorem Ipsum?
                 </h1>
-                <!-- <h6> LAST UPDATED ON 12<sup>th</sup> FEBRUARY 2023</h6> -->
+                <h6> LAST UPDATED ON 12<sup>th</sup> FEBRUARY 2023</h6>
                 <div class="text">
                     <img class="frontImg" src="https://www.nai-group.com/wp-content/uploads/2020/10/machine-tools.png"
                         height="200px" width="auto" alt="">
@@ -113,7 +174,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <footer>
         <table>
             <tr>
@@ -127,7 +188,7 @@
         </table>
     </footer>
     <script src="script.js"></script>
-
+    <script src="parallaxBar.js"></script>
 </body>
 
 </html>
