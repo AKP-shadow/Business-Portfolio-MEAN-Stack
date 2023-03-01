@@ -1,0 +1,34 @@
+.servicecontent {
+    position: relative;
+    top: 15vmin;
+    box-shadow:  1px 3px 4px gray;
+    height: 200px;
+    background-color: rgba(169, 175, 173,0.4);
+    text-align: justify;
+    z-index: 2;
+}
+ 
+
+.servicecontent p{
+    letter-spacing: 1px;
+    word-spacing: 2px;
+    width: 60%;
+    font-size: 1vw;
+    font-weight: bold;
+    padding: 30px 30px;
+}
+
+#photo{
+    position: absolute;
+    /* padding-right: 100px; */
+    right: 10%;
+    top: -15%;
+    /* background-color: blue; */
+    width: 50vmin;
+    height: 40vmin;
+
+}
+
+.image{
+    object-fit: contain;
+}
