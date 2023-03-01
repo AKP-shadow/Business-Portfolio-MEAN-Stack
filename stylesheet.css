@@ -171,7 +171,6 @@ body::-webkit-scrollbar {
     height: 50vh;
     width: 100%;
     overflow: hidden;
-    /* transform: translate(0%,-50%); */
 }
 
 #img_track {
@@ -190,7 +189,7 @@ body::-webkit-scrollbar {
 }
 
 #parallaxSlider #img_track .image:hover   {
-    opacity: 0.5;
+    opacity: 1;
 }
 
 
@@ -329,10 +328,11 @@ footer {
 }
 
 table {
-    width: 100%;
+    /* width: 80%; */
     padding: 10px;
     position: relative;
-    object-position: center;
+    left: 25%;
+    object-position: right;
     text-align: left;
 }
 
@@ -422,7 +422,7 @@ td {
   }
   
  #services{
-
+    position: relative;
     align-items: center;
     height: 95vh;
     color: white;
@@ -529,3 +529,9 @@ transform: translateX(0);
     color: white;
 
 }
+
+.image:hover + .info{
+    display: block;
+}
+
+ 
