@@ -355,7 +355,12 @@ td {
 
 }
 .service-box{
-    position: absolute;
+display: inline-block;
+}
+.service-box p{
+    font-size: 1em;
+    font-weight: bold;
+    text-align: center;
 }
 .card{
     background-color: transparent;
