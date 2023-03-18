@@ -10,6 +10,7 @@
  
 
 .servicecontent p{
+    z-index: -1;
     letter-spacing: 1px;
     word-spacing: 2px;
     width: 60%;
@@ -21,11 +22,12 @@
 #photo{
     position: absolute;
     /* padding-right: 100px; */
-    right: 10%;
+    right: 30%;
     top: -15%;
     /* background-color: blue; */
-    width: 50vmin;
-    height: 40vmin;
+    width: 1vmin;
+    height:20px;
+    z-index: -1;
 
 }
 

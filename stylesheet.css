@@ -1,8 +1,9 @@
-@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap"  );
-body{
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap");
+
+body {
     margin: 0;
-    font-family:'Merriweather', Courier, monospace;
-}   
+    font-family: 'Merriweather', Courier, monospace;
+}
 
 .sign-in {
     position: relative;
@@ -12,43 +13,44 @@ body{
     color: #FFFFFF;
     text-align: center;
     font-size: 14px;
-    padding: 20px;
+    /* padding: 20px; */
     width: 120px;
     transition: all 0.5s;
     cursor: pointer;
     height: 70px;
     float: right;
-  }
-  
-  .sign-in span {
+}
+
+.sign-in span {
     cursor: pointer;
     display: inline-block;
     position: relative;
     transition: 0.5s;
-  }
-  
-  .sign-in span:after {
+}
+
+.sign-in span:after {
     content: '\00bb';
     position: absolute;
     opacity: 0;
     top: 0;
     right: -20px;
     transition: 0.5s;
-  }
-  
-  .sign-in:hover span {
+}
+
+.sign-in:hover span {
     padding-right: 25px;
-  }
-  
-  .sign-in:hover span:after {
+}
+
+.sign-in:hover span:after {
     opacity: 1;
     right: 0;
-  }
-.nav-elements li{
+}
+
+.nav-elements li {
     list-style-type: none;
     margin-top: 20px;
 }
- 
+
 
 nav input {
     margin: 10px 10px 10px 10px;
@@ -71,7 +73,7 @@ input :focus {
     width: auto;
 
 }
- 
+
 
 .dropdown {
     display: inline;
@@ -145,10 +147,10 @@ body::-webkit-scrollbar {
     left: 15%;
     position: absolute;
     width: 600px;
-    background-color: rgba(0,0,0,0.65);
+    background-color: rgba(0, 0, 0, 0.65);
     height: 200px;
 }
- 
+
 .text-on-image p {
     position: absolute;
     font-style: italic;
@@ -188,13 +190,21 @@ body::-webkit-scrollbar {
     /* opacity: 1; */
 }
 
-#parallaxSlider #img_track .image:hover   {
-    opacity: 1;
+/* #parallaxSlider #img_track .image:hover   {
+    opacity: 0.7;
+} */
+/* .servicelist:hover + .info{
+    display: block;
+} */
+
+.form-outline {
+    margin-top: 5vh;
+    width: 80vw;
+    margin-left: 10vw;
+    margin-right: 10vw;
 }
 
-
-
-.topnav a{
+.topnav a {
     position: relative;
     right: 0;
     /* top: 50%; */
@@ -206,12 +216,13 @@ body::-webkit-scrollbar {
     font-weight: 500;
     /* height: 100%; */
 }
-.topnav a:hover{
-    box-shadow: inset 0 1px 1px ;
+
+.topnav a:hover {
+    box-shadow: inset 0 1px 1px;
 }
 
- 
-.nav-button{
+
+.nav-button {
     margin: 10px 65px;
     padding: 12px 17px 12px 17px;
     position: relative;
@@ -227,7 +238,7 @@ body::-webkit-scrollbar {
     top: 200px;
 }
 
- 
+
 .topnav h2 {
     /* position: relative; */
     /* top: 50%; */
@@ -316,8 +327,10 @@ body h1 {
     filter: blur(2px);
     background-repeat: no-repeat;
     background-size: 100%;
-    height: 690px;
-    min-height: 100%;
+    height: 85vh;
+    min-height: 100vh;
+    object-fit: cover;
+    object-position: 100% center;
     background-position: 0 0;
     position: relative;
 }
@@ -341,9 +354,34 @@ td {
     padding: 40px;
 
 }
+.service-box{
+    position: absolute;
+}
+.card{
+    background-color: transparent;
+}
+
+.btn  {
+    background-color: transparent;
+    background-color: #f4511e ;
+    display: none;
+    filter: blur(1px);
+    transform: translateY(-35px);
+    transition: all 1s;
+    color: white;
+
+}
 
 
-#signbutton{
+.service-box:hover .btn  {
+    display: block;
+    filter: blur(0);
+    transform: translateY(0);
+
+
+}
+ 
+#signbutton {
     position: absolute;
     right: 100px;
 }
@@ -354,109 +392,120 @@ td {
     height: 70px;
     background: #262626;
     z-index: 1;
-  }
-  
-  .brand {
+    transition: top 0.3s;
+}
+
+.brand {
     position: absolute;
     padding-left: 10px;
     float: left;
     line-height: 70px;
     text-transform: uppercase;
     font-size: 1.4em;
-  }
-  .brand a,
-  .brand a:visited {
+}
+
+.brand a,
+.brand a:visited {
     color: #ffffff;
     text-decoration: none;
-  }
-  
-  .nav-container {
- 
+}
+
+.nav-container {
+
     max-width: 1000px;
     margin: 0 auto;
-  }
-  
-  nav {
+}
+
+nav {
     float: right;
-  }
-  nav ul {
+}
+
+nav ul {
     list-style: none;
     margin: 0;
     padding: 0;
-  }
-  nav ul li {
+}
+
+nav ul li {
     float: left;
     position: relative;
-  }
-  nav ul li a,
-  nav ul li a:visited {
+}
+
+nav ul li a,
+nav ul li a:visited {
     display: block;
     padding: 0 20px;
     line-height: 70px;
     background: #262626;
     color: #ffffff;
     text-decoration: none;
-  }
-  nav ul li a:hover,
-  nav ul li a:visited:hover {
+}
+
+nav ul li a:hover,
+nav ul li a:visited:hover {
     background: #2581DC;
     color: #ffffff;
-  }
-  nav ul li a:not(:only-child):after,
-  nav ul li a:visited:not(:only-child):after {
+}
+
+nav ul li a:not(:only-child):after,
+nav ul li a:visited:not(:only-child):after {
     padding-left: 4px;
-  }
-  nav ul li ul li {
+}
+
+nav ul li ul li {
     min-width: 190px;
-  }
-  nav ul li ul li a {
+}
+
+nav ul li ul li a {
     padding: 15px;
     line-height: 20px;
-  }
-  
-  .nav-dropdown {
+}
+
+.nav-dropdown {
     position: absolute;
     display: none;
     z-index: 1;
     box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
-  }
-  
- #services{
+}
+
+#services {
     position: relative;
     align-items: center;
-    height: 95vh;
+    height: 100vh;
     color: white;
     background-color: rgba(0, 0, 0, 0.35);
     box-shadow: 0 8px 8px -4px rgb(100, 101, 102);
-     
- }
 
-.servicelist{
+}
+
+.servicelist {
     position: relative;
 }
-.readmore{
+
+.readmore {
     width: 100%;
     height: 20%;
     justify-content: center;
     text-align: center;
-    background-color: rgba(0,0,0,0.65);
+    background-color: rgba(0, 0, 0, 0.65);
     position: relative;
     bottom: 0;
 }
-.readmore p{
+
+.readmore p {
     position: relative;
     margin: 0;
- top: 40%;
+    top: 40%;
 
 }
- 
- 
- 
-#about{
-    height: 85vh;
+
+
+
+#about {
+    height: 100vh;
     font-size: 2em;
     padding: 30px;
-    background-color: rgba(0,0,0,0.85);
+    background-color: rgba(0, 0, 0, 0.85);
     display: grid;
     align-content: center;
     position: relative;
@@ -465,24 +514,29 @@ td {
     box-shadow: 0 8px 8px -4px rgb(69, 71, 72);
 }
 
-.hidden{
+#about-text {
+    transform: translateX(30%);
+    font-size: 1.3vw;
+}
+
+.hidden {
     opacity: 0;
     filter: blur(5px);
     transform: translateX(-30px);
     transition: all 1s;
 }
 
-.show{
-opacity: 1;
-filter: blur(0);
-transform: translateX(0);
+.show {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateX(0);
 }
 
-#progress{
-    height: 85vh;
+#progress {
+    height: 100vh;
     font-size: 2em;
     padding: 30px;
-    background-color: rgba(0,0,0,0.65);
+    background-color: rgba(0, 0, 0, 0.65);
     display: grid;
     align-content: center;
     position: relative;
@@ -491,32 +545,34 @@ transform: translateX(0);
     box-shadow: 0 8px 8px -4px rgb(69, 71, 72);
 }
 
-#portfolio{
+#portfolio {
     height: 85vh;
     font-size: 2em;
     padding: 30px;
-    background-color: rgba(0,0,0,0.25);
+    background-color: rgba(0, 0, 0, 0.25);
     align-content: center;
     position: relative;
     place-items: center;
     color: white;
     box-shadow: 0 8px 8px -4px rgb(69, 71, 72);
 }
-.job  {
-    display:inline-flex;
+
+.job {
+    display: inline-flex;
     padding-left: 20px;
     padding-right: 20px;
     justify-content: space-between;
     /* position: relative; */
     flex-flow: row wrap;
 }
-.job img{
+
+.job img {
     transform: rotate(20px);
     width: 50vh;
     height: 60vh;
 }
 
-.info{
+.info {
     background-color: #f4511e;
     padding: 15px 10px 15px 10px;
     position: absolute;
@@ -524,14 +580,9 @@ transform: translateX(0);
     left: 28%;
     /* display: none; */
 }
-.info a{
+
+.info a {
     text-decoration: none;
     color: white;
 
 }
-
-.image:hover + .info{
-    display: block;
-}
-
- 
