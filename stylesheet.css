@@ -361,27 +361,46 @@ display: inline-block;
     font-size: 1em;
     font-weight: bold;
     text-align: center;
+    
 }
 .card{
     background-color: transparent;
 }
 
 .btn  {
+    position: absolute;
+    width: 100%;
     background-color: transparent;
     background-color: #f4511e ;
     display: none;
     filter: blur(1px);
-    transform: translateY(-35px);
+    transform: translateY(35px);
     transition: all 1s;
     color: white;
 
 }
 
+.grid-container {
+    display: grid;
+    grid-template-columns: 30vw 30vw 30vw  ;
+    gap: 10px;
+    /* background-color: #2196F3; */
+    padding: 40px;
+    margin-left: 4vw;
+  }
+  
+  .grid-container > .service-box {
+    /* background-color: rgba(255, 255, 255, 0.8); */
+    text-align: center;
+    width: 25vw;
+    padding: 20px 50px;
+  }
+
 
 .service-box:hover .btn  {
     display: block;
     filter: blur(0);
-    transform: translateY(0);
+    transform: translate(0px,180px);
 
 
 }
@@ -476,7 +495,8 @@ nav ul li ul li a {
 #services {
     position: relative;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
+    height: auto;
     color: white;
     background-color: rgba(0, 0, 0, 0.35);
     box-shadow: 0 8px 8px -4px rgb(100, 101, 102);
