@@ -129,7 +129,7 @@ body::-webkit-scrollbar {
 
 }
 
-#subtitle {
+.subtitle {
 
     padding-top: 50px;
     font-size: 3em;
@@ -163,39 +163,7 @@ body::-webkit-scrollbar {
     text-shadow: 2px;
 }
 
-#parallaxSlider {
-    position: relative;
-    padding-left: 30px;
-    padding-top: 50px;
-    padding-bottom: 100px;
-    margin: 0rem;
 
-    height: 50vh;
-    width: 100%;
-    overflow: hidden;
-}
-
-#img_track {
-    display: flex;
-    gap: 4vmin;
-    user-select: none;
-    left: 45%;
-}
-
-#parallaxSlider #img_track .image {
-    width: 35vmin;
-    height: 40vmin;
-    object-fit: cover;
-    object-position: 100% center;
-    /* opacity: 1; */
-}
-
-/* #parallaxSlider #img_track .image:hover   {
-    opacity: 0.7;
-} */
-/* .servicelist:hover + .info{
-    display: block;
-} */
 
 .form-outline {
     margin-top: 5vh;
@@ -249,38 +217,7 @@ body::-webkit-scrollbar {
     display: inline;
     letter-spacing: 1px;
 }
-
-#maincontent {
-    font-size: 1.1em;
-
-    margin-left: 5%;
-    margin-top: 1%;
-    width: 80%;
-    padding-right: 60px;
-    /* border-right: 2px  solid rgb(165, 157, 157); */
-}
-
-#maincontent p {
-    font-size: 1.1em;
-
-}
-
-#maincontent h6 {
-    padding-left: 10px;
-    margin-top: 0;
-    letter-spacing: 2px;
-    padding-top: 0;
-    color: rgb(142, 142, 137);
-}
-
-#sidecontent {
-    padding-top: 5%;
-    position: relative;
-    padding: 20;
-    width: 30%;
-    z-index: -1;
-
-}
+ 
 
 .text {
     letter-spacing: 1px;
@@ -309,31 +246,9 @@ body::-webkit-scrollbar {
 body h1 {
     font-size: 4em;
 }
-
-#maincontent .text .frontImg {
-    position: absolute;
-    top: 26%;
-}
-
-#para1 {
-    position: relative;
-    padding-left: 350px;
-}
+ 
 
 
-#mainimage {
-    background-image: url("https://c1.wallpaperflare.com/preview/201/893/181/grinder-industry-steel-machine.jpg");
-    width: auto;
-    filter: blur(2px);
-    background-repeat: no-repeat;
-    background-size: 100%;
-    height: 85vh;
-    min-height: 100vh;
-    object-fit: cover;
-    object-position: 100% center;
-    background-position: 0 0;
-    position: relative;
-}
 
 footer {
     box-shadow: 1px 1px 6px 3px rgba(209, 204, 204, 0.5);
@@ -354,24 +269,35 @@ td {
     padding: 40px;
 
 }
-.service-box{
-display: inline-block;
+
+.service-box {
+    display: inline-block;
+    border-radius: 20px;
 }
-.service-box p{
+
+.service-box p {
     font-size: 1em;
     font-weight: bold;
     text-align: center;
-    
+
 }
-.card{
+
+.card {
     background-color: transparent;
 }
 
-.btn  {
+.card img {
+    border-radius: 25px;
+    object-fit: contain;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+
+}
+
+.btn {
     position: absolute;
     width: 100%;
     background-color: transparent;
-    background-color: #f4511e ;
+    background-color: #f4511e;
     display: none;
     filter: blur(1px);
     transform: translateY(35px);
@@ -382,29 +308,34 @@ display: inline-block;
 
 .grid-container {
     display: grid;
-    grid-template-columns: 30vw 30vw 30vw  ;
+    grid-template-columns: 30vw 30vw 30vw;
     gap: 10px;
     /* background-color: #2196F3; */
     padding: 40px;
     margin-left: 4vw;
-  }
-  
-  .grid-container > .service-box {
+}
+
+.grid-container>.service-box {
     /* background-color: rgba(255, 255, 255, 0.8); */
     text-align: center;
     width: 25vw;
     padding: 20px 50px;
-  }
+}
 
+.service-box:hover {
+    transition-duration: 0.3s;
+    transform: scale(1.1,1.1);
+}
 
-.service-box:hover .btn  {
+.service-box:hover .btn {
+
     display: block;
     filter: blur(0);
-    transform: translate(0px,180px);
+    transform: translate(0px, 180px);
 
 
 }
- 
+
 #signbutton {
     position: absolute;
     right: 100px;
@@ -532,17 +463,15 @@ nav ul li ul li a {
     padding: 30px;
     background-color: rgba(0, 0, 0, 0.85);
     display: grid;
-    align-content: center;
+    /* align-content: center; */
     position: relative;
-    place-items: center;
+    /* place-items: center; */
     color: white;
     box-shadow: 0 8px 8px -4px rgb(69, 71, 72);
+    overflow: hidden;
 }
 
-#about-text {
-    transform: translateX(30%);
-    font-size: 1.3vw;
-}
+
 
 .hidden {
     opacity: 0;
@@ -611,3 +540,75 @@ nav ul li ul li a {
     color: white;
 
 }
+
+ 
+
+  #heroImage {
+    background-image: url("https://c1.wallpaperflare.com/preview/201/893/181/grinder-industry-steel-machine.jpg");
+    width: auto;
+    filter: blur(2px);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    height: 85vh;
+    min-height: 100vh;
+    object-fit: cover;
+    object-position: 100% center;
+    background-position: 0 0;
+    position: relative;
+}
+.heroSection{
+    position: relative;
+}
+
+ #AllServices{
+    overflow-y: scroll;
+ }
+
+ #aboutPic{
+    height: 50vh;
+    width: auto;
+    position: relative;
+    margin-left: 10%;
+    /* margin-top: 10%; */
+ }
+
+
+
+
+ blockquote {
+     font-family: Georgia, serif;
+     position: absolute;
+     margin: 0.5em;
+     float: right;
+    right: 5%;
+    top: 25%;
+    width: 50%;
+     padding: 0.5em 2em 0.5em 3em;
+ }
+ blockquote:before {
+     font-family: Georgia, serif;
+     position: absolute;
+     font-size: 6em;
+     line-height: 1;
+     top: 0;
+     left: 0;
+     content: "\201C";
+ }
+ blockquote:after {
+     font-family: Georgia, serif;
+     position: absolute;
+     float:right;
+     font-size:6em;
+     line-height: 1;
+     right:0;
+     bottom:-0.5em;
+     content: "\201D";
+ }
+ blockquote footer {
+     padding: 0 2em 0 0;
+     text-align:right;
+ }
+ blockquote cite:before {
+     content: "\2013";
+ }
+ 

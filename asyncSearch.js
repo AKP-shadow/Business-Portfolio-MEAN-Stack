@@ -10,40 +10,57 @@ service_data = {
     alias: "welding", des: "", img: "https://d3eeke16mv0lt7.cloudfront.net/sites/default/files/styles/article_hero_image/public/field/image/chaos-testing-tools.jpg?itok=PtIklEX1"
   },
   "Gear and shaft desiging": {
-    alias: "", des: "", img:"https://www.reliance-foundry.com/wp-content/uploads/Bearings-1.jpg"
+    alias: "", des: "", img: "https://www.reliance-foundry.com/wp-content/uploads/Bearings-1.jpg"
   }
 
 
 }
-
-function loadDoc() {
-  input = document.getElementById("form1").value.toUpperCase();
-  document.getElementsByClassName("grid-container")[0].innerHTML = ``;
-  serviceinfo = ["On-line Leak", "Grinding and Machining", "Fabricating", "Cold Welding", "Bearings", "Grinding", "Cutting and Conditioning"]
-  
+function startState(){
+  serviceinfo = ["On-line Leak", "Grinding and Machining", "Gear and shaft desiging", "Cold Welding"]
   for (i = 0; i < serviceinfo.length; i++) {
     txtValue = serviceinfo[i];
-    if (input.length==0){
-      document.getElementsByClassName("grid-container")[0].innerHTML += `<div class="service-box">
-      <p>${txtValue}</p>
-      <div class="card" style="width: 18rem;">
-          <img src="${service_data[txtValue].img}" draggable="false"
-              class="card-img-top" alt="...">
-          <a class="btn " href="#" role="button">Learn More</a>
-      </div>
-  </div>`   
-    }
-    else if (txtValue.toUpperCase().indexOf(input) > -1) {
-      console.log(txtValue)
-      document.getElementsByClassName("grid-container")[0].innerHTML += `<div class="service-box">
-        <p>${txtValue}</p>
-        <div class="card" style="width: 18rem;">
-            <img src="${service_data[txtValue].img}" draggable="false"
-                class="card-img-top" alt="...">
-            <a class="btn " href="#" role="button">Learn More</a>
-        </div>
-    </div>`
-    } else {
-    }
-  };
+    console.log(Object.keys(service_data).length)
+    document.getElementsByClassName("grid-container")[0].innerHTML += `<div class="service-box">
+    <p>${txtValue}</p>
+    
+    <div class="card" style="width: 18rem;border-radius: 60px;">
+        <img src="${service_data[txtValue].img}" draggable="false"
+            class="card-img-top" alt="...">
+        <a class="btn " href="#" role="button" onClick ="navToService('onlineleak')">Learn More</a>
+    </div>
+</div>`
+  }
 }
+
+startState();
+function loadDoc() {
+  f=0
+  input = document.getElementById("form1").value.trim().toUpperCase();
+  document.getElementsByClassName("grid-container")[0].innerHTML = ``;
+  serviceinfo = ["On-line Leak", "Grinding and Machining", "Gear and shaft desiging", "Cold Welding"]
+  console.log(input)
+  if (input.length == 0) {
+    startState();
+  }
+  else{
+    pattern = RegExp(input.toUpperCase(), "i");
+    for (i = 0; i < serviceinfo.length; i++) {
+      txtValue = serviceinfo[i];
+      if (txtValue.toUpperCase().match(pattern) ) {
+        f=1
+        console.log(txtValue)
+        document.getElementsByClassName("grid-container")[0].innerHTML += `<div class="service-box">
+            <p>${txtValue}</p>
+            <div class="card" style="width: 18rem;">
+                <img src="${service_data[txtValue].img}" draggable="false"  
+                    class="card-img-top" alt="...">
+                <a class="btn " href="#" role="button" onClick ="navToService('onlineleak')>Learn More</a>
+            </div>
+        </div>`
+      }
+  }
+  if(f==0){
+    document.getElementsByClassName("grid-container")[0].innerHTML = "<h2>No search found</h2>"
+  }
+}}
+

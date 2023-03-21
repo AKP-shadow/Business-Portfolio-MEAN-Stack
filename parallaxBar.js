@@ -1,45 +1,40 @@
- track = document.getElementById("img_track");
+// I know that the code could be better.
+// If you have some tips or improvement, please let me know.
 
- handleOnDown = e => track.dataset.mouseDownAt = e.clientX;
+$(function(){$(".bg-holder").parallaxScroll({friction:.5,direction:"vertical"})});
+// $('.img-parallax').each(function(){
+//   var img = $(this);
+//   var imgParent = $(this).parent();
+//   function parallaxImg () {
+//     var speed = img.data('speed');
+//     var imgY = imgParent.offset().top;
+//     var winY = $(this).scrollTop();
+//     var winH = $(this).height();
+//     var parentH = imgParent.innerHeight();
 
- handleOnUp = () => {
-  track.dataset.mouseDownAt = "0";  
-  track.dataset.prevPercentage = track.dataset.percentage;
-}
 
- handleOnMove = e => {
-  if(track.dataset.mouseDownAt === "0") return;
-  
-   mouseDelta = parseFloat(track.dataset.mouseDownAt) - e.clientX,
-        maxDelta = window.innerWidth / 2;
-  
-   percentage = (mouseDelta / maxDelta) * -100,
-        nextPercentageUnconstrained = parseFloat(track.dataset.prevPercentage) + percentage,
-        nextPercentage = Math.max(Math.min(nextPercentageUnconstrained, 10), -40);
-  
-  track.dataset.percentage = nextPercentage;
-  
-  track.animate({
-    transform: `translate(${nextPercentage}%, 0%)`
-  }, { duration: 1200, fill: "forwards" });
-  
-  for( image of track.getElementsByClassName("image")) {
-    image.animate({
-      objectPosition: `${100 + nextPercentage}% center`
-    }, { duration: 1200, fill: "forwards" });
-  }
-}
+//     // The next pixel to show on screen      
+//     var winBottom = winY + winH;
 
-/* -- Had to add extra lines for touch events -- */
-
-window.onmousedown = e => handleOnDown(e);
-
-window.ontouchstart = e => handleOnDown(e.touches[0]);
-
-window.onmouseup = e => handleOnUp(e);
-
-window.ontouchend = e => handleOnUp(e.touches[0]);
-
-window.onmousemove = e => handleOnMove(e);
-
-window.ontouchmove = e => handleOnMove(e.touches[0]);
+//     // If block is shown on screen
+//     if (winBottom > imgY && winY < imgY + parentH) {
+//       // Number of pixels shown after block appear
+//       var imgBottom = ((winBottom - imgY) * speed);
+//       // Max number of pixels until block disappear
+//       var imgTop = winH + parentH;
+//       // Porcentage between start showing until disappearing
+//       var imgPercent = ((imgBottom / imgTop) * 100) + (50 - (speed * 50));
+//     }
+//     img.css({
+//       top: imgPercent + '%',
+//       transform: 'translate(-50%, -' + imgPercent + '%)'
+//     });
+//   }
+//   $(document).on({
+//     scroll: function () {
+//       parallaxImg();
+//     }, ready: function () {
+//       parallaxImg();
+//     }
+//   });
+// });
