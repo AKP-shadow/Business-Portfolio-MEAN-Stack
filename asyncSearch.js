@@ -21,7 +21,7 @@ function startState(){
     txtValue = serviceinfo[i];
     console.log(Object.keys(service_data).length)
     document.getElementsByClassName("grid-container")[0].innerHTML += `<div class="service-box">
-    <p>${txtValue}</p>
+    <p style="color:black">${txtValue}</p>
     
     <div class="card" style="width: 18rem;border-radius: 60px;">
         <img src="${service_data[txtValue].img}" draggable="false"
@@ -50,7 +50,7 @@ function loadDoc() {
         f=1
         console.log(txtValue)
         document.getElementsByClassName("grid-container")[0].innerHTML += `<div class="service-box">
-            <p>${txtValue}</p>
+            <p style="color:black">${txtValue}</p>
             <div class="card" style="width: 18rem;">
                 <img src="${service_data[txtValue].img}" draggable="false"  
                     class="card-img-top" alt="...">
@@ -60,7 +60,7 @@ function loadDoc() {
       }
   }
   if(f==0){
-    document.getElementsByClassName("grid-container")[0].innerHTML = "<h2>No search found</h2>"
+    document.getElementsByClassName("grid-container")[0].innerHTML = `<h2 style="color:black;">No search found</h2>`
   }
 }}
 

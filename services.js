@@ -18,7 +18,7 @@ if(path[path.length-1]=="serviceinfo.html"){
     pic = serviceinfo.get(servicename)[0]
     desc= serviceinfo.get(servicename)[1].split('.').slice(0,3).join('.');
      console.log( serviceinfo.get(servicename))
-            document.getElementById("photo").innerHTML ="<img class =\"image\" src=" + pic + ">"
+            document.getElementById("photo").innerHTML ="<img style=\"height: 300px;\" class =\"image\" src=" + pic + ">"
     document.getElementById("servicedesc").innerHTML = "<p>" + desc + ".</p>"
     // console.log(desc)
 }
