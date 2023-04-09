@@ -1,0 +1,148 @@
+ 
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <link rel="shortcut icon" type="image/jpg" href="/assets/logo.png"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="stylesheet.css">
+    <link rel="stylesheet" href="/polaroid.css">
+    <link rel="stylesheet" href="/siginstyle.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="semiStyle.css">
+    <link rel="stylesheet" href="servicestyle.css">
+    <title>AK Industries - Engineering services</title>
+</head>
+ 
+
+    <section id="navigation">
+        <div class="nav-container">
+            <div class="brand">
+                <img id="logo" src="/assets/logo.png" alt="">
+                <a href="#!">AK Industries</a>
+            </div>
+            <nav>
+                <div class="nav-mobile"><a id="nav-toggle" href="#!"><span></span></a></div>
+                <ul class="nav-list">
+                    <li>
+                        <a href="#mainimage">Home</a>
+                    </li>
+                    <li>
+                        <a href="#about">About</a>
+                    </li>
+                    <li>
+                        <a href="#portfolio">Recent-installs</a>
+
+                    </li>
+                    <li>
+                        <a href="#!">Contact</a>
+                    </li>
+                    <li id="signbutton">
+                        <button class="sign-in" onclick="window.location.href='#';"><span>Sign
+                                in</span></button>
+
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </section>
+
+    <div style="min-height: 100vh;" class="content">
+        <div class="servicecontent">
+            <div id="servicedesc"></div>
+            <br>
+            <div id="photo" style="height: 100px;" >
+            </div>
+        </div>
+    </div>
+
+      <footer class="footer-distributed">
+
+        <div class="footer-left">
+            <img id="logo" src="/assets/logo.png" alt=""> <span><h3>AK Industries </h3> </span>
+            
+
+            <p class="footer-links">
+                <a href="#" class="link-1">Home</a>
+                
+                <a href="#">About</a>
+            
+                <a href="#">Recent-installs</a>
+            
+                <a href="#">Pricing</a>
+                
+                
+                <a href="#">Contact</a>
+            </p>
+
+            <p class="footer-company-name">AK Industries © 2023</p>
+        </div>
+
+        <div class="footer-center">
+
+            <div>
+                <i class="fa fa-map-marker"></i>
+                <p><span>35/11A Perumal Koil</span> 2<sup>nd</sup> st. Ernavoor, Chennai -57 <span>Tamil Nadu, India</span></p>
+            </div>
+
+            <div>
+                <i class="fa fa-phone"></i>
+                <p>+91 9298193312</p>
+            </div>
+
+            <div>
+                <i class="fa fa-envelope"></i>
+                <p><a href="mailto:support@company.com">akindustries@gmail.com</a></p>
+            </div>
+
+        </div>
+
+        <div class="footer-right">
+
+            <p class="footer-company-about">
+                <span>About the company</span>
+                Place where customer expectation exceeds often with State-of-the-Art technology. Innovation meets solid people.
+            </p>
+
+            <div class="footer-icons">
+
+                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-linkedin"></i></a>
+                <a href="#"><i class="fa fa-github"></i></a>
+
+            </div>
+
+        </div>
+
+    </footer>
+       <script src="script.js"></script>
+    <!-- <script src="parallaxBar.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.sign-in').click(function () {
+                $('.overlay').toggleClass("show-modal");
+                $('.overlay.show-modal').focus()
+            });
+            $('.fa-times').click(function () {
+                $('.overlay').toggleClass("show-modal");
+
+            });
+        });
+
+    </script>
+ 
