@@ -1,0 +1,19 @@
+ID
+{
+    name
+    email
+    password (encrypted)
+    quotation_list{
+        qid
+        desc
+        address
+        phno
+        quotation_file {
+             
+             
+
+
+               }
+
+    }
+}

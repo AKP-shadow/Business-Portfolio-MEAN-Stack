@@ -1,0 +1,43 @@
+#pricing {
+    padding: 50px 0;
+  }
+  
+  #pricing h2 {
+    font-size: 36px;
+    margin-bottom: 30px;
+  }
+  
+  #pricing p {
+    font-size: 18px;
+    margin-bottom: 30px;
+    line-height: 1.5;
+  }
+  
+  .pricing-box {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+    padding: 30px;
+  }
+  
+  .pricing-box h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .price {
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .price .currency {
+    font-size: 24px;
+    margin-right: 5px;
+  }
+  
+  .price .amount {
+    color: #26a69a;
+  }
+  

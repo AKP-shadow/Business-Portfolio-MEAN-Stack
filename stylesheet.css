@@ -386,6 +386,10 @@ td {
     position: absolute;
     right: 100px;
 }
+#profbutton{
+    position: absolute;
+    right: 100px;
+}
 
 #navigation {
     position: sticky;
