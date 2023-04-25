@@ -46,6 +46,7 @@ function startState(){
 </div>`
   }
 }
+document.getElementById("grid-container")[0].onload = function() {startState()};
 function loadDoc() {
   f=0
   input = document.getElementById("form1").value.trim().toUpperCase();
@@ -70,7 +71,7 @@ function loadDoc() {
             <div class="card" style="width: 16vw;border-radius: 40px;">
                 <img src="${service_data[txtValue].img}" draggable="false"  
                     class="card-img-top" alt="...">
-                <a class="btn " ui-sref="hello({id: 2})" ui-sref-active="active" role="button" onClick ="navToService('onlineleak')>Learn More</a>
+                <a class="btn " ui-sref="hello({id: 2})" ui-sref-active="active" role="button" onClick ="navToService('onlineleak')">Learn More</a>
             </div>
         </div>`
         console.log(txtValue+"yes")

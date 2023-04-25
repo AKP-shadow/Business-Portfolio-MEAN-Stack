@@ -38,7 +38,8 @@
 
 
 <body ng-app="myApp">
-    <section class="overlay">
+
+ <section class="overlay">
         <div class="box-form">
             <div class="left">
                 <div class="signIn">
@@ -153,7 +154,7 @@
             </nav>
         </div>
     </section>
-    <div class="homeContent" ui-view style="min-height:90vh">
+    <div class="homeContent" ui-view style="min-height:90vh" ng-controller="orderList">
     </div>
     <footer class="footer-distributed">
 
@@ -246,6 +247,7 @@
     </script>
 
     <script>
+        
 
         $(document).ready(function () {
             $('.signbtn').click(function () {
@@ -261,11 +263,6 @@
         
         app.controller('loginCtrl', function($scope) {
             $scope.loggedIn = true;
-            
-            
- 
-            
-          
             $scope.logout = function() {
                 $scope.loggedIn = false;
                 return $scope.loggedIn;
@@ -316,7 +313,59 @@
             states.forEach((state) => $stateProvider.state(state));
             $urlRouterProvider.otherwise('/');
         });
+        app.controller('orderList',function($scope, $http){
+   
+            $http.get("reqForms.json")
+            .then(function(response) {
+ 
+              $scope.tableData = response.data;
+            });
 
+            $scope.data = function(){return $scope.tableData}
+            $scope.order=true
+         $scope.sortList = function () {
+ 
+              if ($scope.order){
+                  $scope.tableData.sort();
+                  console.log(1)
+              }
+              else{
+                  $scope.tableData.reverse()
+              }
+              $scope.order = !$scope.order
+ 
+              };  
+              
+            $scope.sortDate =  function  () {
+                $scope.tableData.sort(function (date1, date2) {
+                    var parts1 = date1['date'].split('/');
+                    var parts2 = date2['date'].split('/');
+                    
+                    // Convert the date strings to Date objects for comparison
+                    var dateObj1 = new Date(parts1[2], parts1[1] - 1, parts1[0]);
+                    var dateObj2 = new Date(parts2[2], parts2[1] - 1, parts2[0]);
+                    if($scope.order){
+                        change = 1
+                    }
+                    else{
+                        change=-1
+                    }
+                    
+                    // Compare the date objects and return -1, 0, or 1 for sorting
+                    if  (dateObj1 < dateObj2) {
+                      return -change;
+                    } else   {
+                      return change;
+                    } 
+                    
+                    
+                  });
+                  $scope.order = !$scope.order
+                  console.log($scope.order)
+                  console.log($scope.tableData)
+                  return $scope.tableData;
+              }
+        })
     </script>
 
 </body>

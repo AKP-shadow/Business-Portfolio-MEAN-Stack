@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>AngularJS Sort Example</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.9/angular.min.js"></script>
+</head>
+
+<body ng-app="myApp" ng-controller="myCtrl">
+  <h1>Sort Example</h1>
+
+  <button ng-click="sortList()">Sort</button>
+
+  <ul>
+    <li ng-repeat="item in items">{{item}}</li>
+  </ul>
+
+  <script>
+    angular.module('myApp', [])
+      .controller('myCtrl', function ($scope) {
+        $scope.items = ['Apple', 'xBanana', 'Cherry', 'Date', 'Fig', 'Grape'];
+        $scope.order=true
+        $scope.sortList = function () {
+          // Use the Array.sort() method to sort the items array in ascending order
+          
+        
+        if ($scope.order){
+            $scope.items.sort();
+            console.log(1)
+        }
+        else{
+            $scope.items.reverse()
+            console.log(0)
+        }
+        $scope.order = !$scope.order
+ 
+          console.log($scope.order)
+        };
+      });
+  </script>
+</body>
+
+</html>

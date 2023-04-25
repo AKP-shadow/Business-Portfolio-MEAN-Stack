@@ -23,3 +23,4 @@ if(path[path.length-1]=="serviceinfo.html"){
     // console.log(desc)
 }
 
+ 

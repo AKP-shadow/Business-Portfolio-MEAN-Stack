@@ -147,6 +147,7 @@
  }
 
  label::before {
+  display: none;
    content: ' \f00c';
    position: absolute;
    font-family: FontAwesome;

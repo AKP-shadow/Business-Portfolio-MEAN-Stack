@@ -5,7 +5,7 @@
     </ol>
 </nav>
 <div class="filter-buttons">
-  <button class="filter-btn filter-by-date">
+  <button class="filter-btn filter-by-date"  ng-click="tableData = sortDate('desc')">
     <i class="fa fa-calendar"></i>
     Filter by Date
   </button>
@@ -14,36 +14,36 @@
     Filter by Status
   </button>
 </div>
-<div class="search-container">
+<div class="search-container" > 
   <input type="text" placeholder="Search Quotation Number...">
   <button type="submit"><i class="fa fa-search"></i></button>
 </div>
 
-<table style="width:80vw;transform: translate(-15vw,15vh);" class="table table-hover">
-    <thead>
-      <tr>
-        <th scope="col">Quotation #</th>
-        <th scope="col">Date</th>
-        <th scope="col">Job Description</th>
-        <th scope="col">Location</th>
-        <th scope="col">Quotation status</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>12/3/2023</td>
-        <td>SW pipeline in a Ammonia plant that transports hazardous chemicals is suspected to have a leak .</td>
-        <td>Manali, Chennai - 68</td>
-        <td>Pending</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>12/3/2023</td>
-        <td>SW pipeline in a Ammonia plant that transports hazardous chemicals is suspected to have a leak .</td>
-        <td>Manali, Chennai - 68</td>
-        <td>Pending</td>
-      </tr>
+
+<table style="width:80vw;transform: translate(-15vw,15vh);" class="table table-hover" >
  
-    </tbody>
-  </table>
+  <thead>
+    <tr>
+      <th scope="col">Quotation #</th>
+      <th scope="col">Date</th>
+      <th scope="col">Job Description</th>
+      <th scope="col">Location</th>
+      <th scope="col">Quotation status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr  ng-repeat="x in tableData track by $index">
+      <th scope="row">{{x.qno}}</th>
+      <td>{{x.date}}</td>
+      <td>{{x.desc}}</td>
+      <td>{{x.location}}</td>
+      <td>{{x.quoatation_Status}}</td>
+    </tr>
+ 
+
+  </tbody>
+</table>
+ 
+
+
+ 
