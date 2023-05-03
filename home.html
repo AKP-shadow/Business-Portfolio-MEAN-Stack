@@ -3,15 +3,15 @@
         class="navbar navbar-expand-lg navbar-dark">
         <div class="container-fluid" style="height: 60px;">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                aria-expanded="false" aria-label="Toggle navigation">
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div style="transform: translateY(10px);" class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav  ">
                     <li class="nav-item dropdown" style="transform: translateX(200px);">
-                        <a style="font-size: 1.8em;text-decoration: none;   " class="nav-link dropdown-toggle"
-                            href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a style="font-size: 1.8em;text-decoration: none;   " class="nav-link dropdown-toggle" href="#"
+                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Machinery
                         </a>
                         <div class="dropdown-menu" style="  transform: translateX(200px);">
@@ -42,8 +42,8 @@
                         </div>
                     </li>
                     <li class="nav-item dropdown" style="  transform: translateX(200px);">
-                        <a style="font-size: 1.8em;text-decoration: none; " class="nav-link dropdown-toggle"
-                            href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a style="font-size: 1.8em;text-decoration: none; " class="nav-link dropdown-toggle" href="#"
+                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Tooling & Blade
                         </a>
                         <div class="dropdown-menu">
@@ -74,8 +74,8 @@
                         </div>
                     </li>
                     <li class="nav-item dropdown" style="  transform: translateX(200px);">
-                        <a style="font-size: 1.8em;text-decoration: none;  " class="nav-link dropdown-toggle"
-                            href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a style="font-size: 1.8em;text-decoration: none;  " class="nav-link dropdown-toggle" href="#"
+                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Services
                         </a>
                         <div class="dropdown-menu">
@@ -135,9 +135,12 @@
                         src="https://sunlabtech.com/wp-content/uploads/2018/08/Workshop-machines-and-tools.jpg"
                         style=" height: 70vh;" usemap="#workmap">
                     <map name="workmap">
-                        <area shape="rect" coords="34,44,270,350" alt="Computer" ui-sref="hello({id: 2})" ui-sref-active="active">
-                        <area shape="rect" coords="290,172,333,250" alt="Phone" ui-sref="hello({id: 2})" ui-sref-active="active">
-                        <area shape="circle" coords="337,300,44" alt="Cup of coffee" ui-sref="hello({id: 2})" ui-sref-active="active">
+                        <area shape="rect" coords="34,44,270,350" alt="Computer" ui-sref="hello({id: 2})"
+                            ui-sref-active="active">
+                        <area shape="rect" coords="290,172,333,250" alt="Phone" ui-sref="hello({id: 2})"
+                            ui-sref-active="active">
+                        <area shape="circle" coords="337,300,44" alt="Cup of coffee" ui-sref="hello({id: 2})"
+                            ui-sref-active="active">
                     </map>
                 </div>
 
@@ -172,9 +175,8 @@
 </section>
 
 <div class="hr"></div>
-<section id="services">
+<section id="services" ng-controller="homeCtrl">
     <h1 class="section-title">Services & Machinery</h1>
-
     <p class="hidden subtitle" style="letter-spacing: 2px;">Services</p>
     <div class="form-outline">
 
@@ -183,8 +185,54 @@
 
         <span class="glyphicon glyphicon-search"></span>
     </div>
-    <div id="AllServices">
-        <div class="grid-container">
+
+
+    <button class="grid-layout-change" ng-click="changeLayout();">
+
+        <div ng-switch="layout">
+            <i ng-switch-when="list" class="fa fa-th-list" style="color:black;font-size:30px"></i>
+            <ion-icon ng-switch-when="grid" name="grid" style="color:black;font-size:27px"></ion-icon>
+        </div>
+    </button>
+    <div id="AllServices" ng-switch="layout">
+        <div ng-switch-when="list" class="grid-container">
+        </div>
+        <div id="service-list" ng-switch-when="grid">
+            <ul class="list-group list-group-light" >
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <div class="d-flex align-items-center">
+                        <img src="https://mdbootstrap.com/img/new/avatars/8.jpg" alt=""
+                            style="width: 45px; height: 45px" class="rounded-circle" />
+                        <div class="ms-3">
+                            <p class="fw-bold mb-1">John Doe</p>
+                            <p class="text-muted mb-0">john.doe@gmail.com</p>
+                        </div>
+                    </div>
+                    <!-- <span class="badge rounded-pill badge-success">Active</span> -->
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <div class="d-flex align-items-center">
+                        <img src="https://mdbootstrap.com/img/new/avatars/6.jpg" class="rounded-circle" alt=""
+                            style="width: 45px; height: 45px" />
+                        <div class="ms-3">
+                            <p class="fw-bold mb-1">Alex Ray</p>
+                            <p class="text-muted mb-0">alex.ray@gmail.com</p>
+                        </div>
+                    </div>
+                    <!-- <span class="badge rounded-pill badge-primary">Onboarding</span> -->
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <div class="d-flex align-items-center">
+                        <img src="https://mdbootstrap.com/img/new/avatars/7.jpg" class="rounded-circle" alt=""
+                            style="width: 45px; height: 45px" />
+                        <div class="ms-3">
+                            <p class="fw-bold mb-1">Kate Hunington</p>
+                            <p class="text-muted mb-0">kate.hunington@gmail.com</p>
+                        </div>
+                    </div>
+                    <!-- <span class="badge rounded-pill badge-warning">Awaiting</span> -->
+                </li>
+            </ul>
         </div>
     </div>
 </section>
@@ -249,10 +297,10 @@
     <img style="left:5%;top:35%;" class="company" src="./assets/reliance.png" alt="">
     <img style="left:7%;top:70%;" class="company" src="./assets/kothari_logo.jfif" alt="">
     <div style="position:absolute;right:10%;top:30%">
-        <iframe width="595" height="335" src="https://www.youtube.com/embed/vBx5lwzTqbw"
+        <!-- <iframe width="595" height="335" src="https://www.youtube.com/embed/vBx5lwzTqbw"
             title="MapleSim Overview: Model-Driven Innovation for Machine Design" frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen></iframe>
+            allowfullscreen></iframe> -->
     </div>
 </section>
 
@@ -272,19 +320,19 @@
         class="fa fa-file-text-o" style="font-size:25px;"></i><span style="padding-left:15px">Request
         Quotation</span> </button>
 </div>
- 
-<script>  serviceinfo = ["On-line Leak","On-line Leak","On-line Leak", "Grinding and Machining", "Gear and shaft desiging", "Cold Welding","Gear and shaft desiging","Gear and shaft desiging"]
+
+<script>  serviceinfo = ["On-line Leak", "On-line Leak", "On-line Leak", "Grinding and Machining", "Gear and shaft desiging", "Cold Welding", "Gear and shaft desiging", "Gear and shaft desiging"]
 
     for (i = 0; i < serviceinfo.length; i++) {
-      txtValue = serviceinfo[i];
-      // console.log(document.getElementsByClassName("grid-container")[0].size/)
-      document.getElementsByClassName("grid-container")[0].innerHTML += `<div class="service-box">
+        txtValue = serviceinfo[i];
+        // console.log(document.getElementsByClassName("grid-container")[0].size/)
+        document.getElementsByClassName("grid-container")[0].innerHTML += `<div class="service-box">
       <p style="color:black;transform: translateX(-20px);">${txtValue}</p>
       
       <div class="card" style="width: 16vw;border-radius: 40px;">
           <img   src="${service_data[txtValue].img}" draggable="false"
               class="card-img-top" alt="...">
-          <a class="btn" ui-sref="hello({id: 2})" ui-sref-active="active" role="button" >Learn More</a>
+          <a class="btn1" ui-sref="hello({id: 2})" ui-sref-active="active" role="button" >Learn More</a>
       </div>
   </div>`
     }</script>

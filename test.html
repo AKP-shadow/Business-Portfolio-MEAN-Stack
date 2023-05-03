@@ -1,43 +1,34 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-  <title>AngularJS Sort Example</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.9/angular.min.js"></script>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="test.css">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
 </head>
-
-<body ng-app="myApp" ng-controller="myCtrl">
-  <h1>Sort Example</h1>
-
-  <button ng-click="sortList()">Sort</button>
-
-  <ul>
-    <li ng-repeat="item in items">{{item}}</li>
+<body>
+  <ul class="item-list">
+    <li class="item">
+      <img src="item1.jpg" alt="Item 1">
+      <h3>Item 1</h3>
+    </li>
+    
+    <li class="item">
+      <img src="item2.jpg" alt="Item 2">
+      <h3>Item 2</h3>
+    </li>
+    
+    <li class="item">
+      <img src="item3.jpg" alt="Item 3">
+      <h3>Item 3</h3>
+    </li>
+    
+    <li class="item">
+      <img src="item4.jpg" alt="Item 4">
+      <h3>Item 4</h3>
+    </li>
   </ul>
-
-  <script>
-    angular.module('myApp', [])
-      .controller('myCtrl', function ($scope) {
-        $scope.items = ['Apple', 'xBanana', 'Cherry', 'Date', 'Fig', 'Grape'];
-        $scope.order=true
-        $scope.sortList = function () {
-          // Use the Array.sort() method to sort the items array in ascending order
-          
-        
-        if ($scope.order){
-            $scope.items.sort();
-            console.log(1)
-        }
-        else{
-            $scope.items.reverse()
-            console.log(0)
-        }
-        $scope.order = !$scope.order
- 
-          console.log($scope.order)
-        };
-      });
-  </script>
+  
 </body>
-
 </html>

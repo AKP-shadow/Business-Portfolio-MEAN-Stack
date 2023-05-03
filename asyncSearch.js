@@ -46,6 +46,24 @@ function startState(){
 </div>`
   }
 }
+
+function startStateList(){
+  serviceinfo = ["On-line Leak","On-line Leak","On-line Leak", "Grinding and Machining", "Gear and shaft desiging", "Cold Welding","Gear and shaft desiging","Gear and shaft desiging"]
+
+  for (i = 0; i < serviceinfo.length; i++) {
+    txtValue = serviceinfo[i];
+    // console.log(document.getElementsByClassName("grid-container")[0].size/)
+    document.getElementsByClassName("grid-container")[0].innerHTML += `<div class="service-box">
+    <p style="color:black;transform: translateX(-20px);">${txtValue}</p>
+    
+    <div class="card" style="width: 16vw;border-radius: 40px;">
+        <img   src="${service_data[txtValue].img}" draggable="false"
+            class="card-img-top" alt="...">
+        <a class="btn" ui-sref="hello({id: 2})" ui-sref-active="active" role="button" >Learn More</a>
+    </div>
+</div>`
+  }
+}
 document.getElementById("grid-container")[0].onload = function() {startState()};
 function loadDoc() {
   f=0

@@ -39,7 +39,7 @@
 #navigation{
    text-decoration: none;
 }
-.btn {
+.btn1 {
    position: absolute;
    width: 100%;
    background-color: transparent;
@@ -321,4 +321,34 @@ a.nav-link:hover{
 
 .signIn span a{
 	transform: translateX(70%);
+}
+
+.grid-layout-change {
+	position: absolute;
+	transform: translateY(-10vh);
+	right: 10vw;
+	background-color: #ffffff;
+	/* color: white; */
+	padding: 10px 10px;
+	height: 50px;
+	width: 60px;
+	border: 0;
+	border-radius: 10px;
+	transition: background-color 0.3s ease-in-out;
+  }
+  
+  .grid-layout-change:hover {
+	/* transform: scale(1.1); */
+	background-color: #d4cfcf;
+  }
+  
+  .list-group-item{
+	width: 75vw;
+	height: 10vh;
+	transform: translateX(10vw);
+	margin: 5px;
+}
+
+.list-group-item:hover{
+	background-color: #e9e9e9;
 }

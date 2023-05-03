@@ -1,0 +1,24 @@
+#service-list .item-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  #service-list  .item {
+    width: calc(50% - 20px);
+    margin-bottom: 40px;
+  }
+  
+  #service-list  .item img {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+  }
+  
+  #service-list  .item h3 {
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0;
+  }
+  

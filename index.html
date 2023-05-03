@@ -21,10 +21,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="semiStyle.css">
-    <link rel="stylesheet" href="orderHistory.css">
     <link rel="stylesheet" href="./contact.css">
     <link rel="stylesheet" href="./pricing.css">
-    <title>AK Industries - Engineering services</title>
+    <link rel="stylesheet" href="orderHistory.css">
+    <link rel="stylesheet" href="listView.css">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<!-- <link rel="stylesheet" href="https:///maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+<title>AK Industries - Engineering services</title>
 </head>
 
 
@@ -37,7 +41,7 @@
 
 
 
-<body ng-app="myApp">
+<body ng-app="myApp" style="height:auto ;  font-size:1.5em">
 
  <section class="overlay">
         <div class="box-form">
@@ -165,7 +169,7 @@
 
 
             <p class="footer-links">
-                <a href="#" class="link-1">Home</a>
+                <a href="#!" class="link-1">Home</a>
 
                 <a href="#">About</a>
 
@@ -273,6 +277,20 @@
             $scope.username = "";
 
         });
+        app.controller('homeCtrl',function($scope){
+            $scope.layout='list';
+
+            $scope.changeLayout = function(){
+                if($scope.layout=='list')
+                {
+                    $scope.layout = 'grid'
+                }
+                else{
+                    $scope.layout='list'
+                }
+                console.log($scope.layout)
+            }
+        })
         app.config(function ($stateProvider, $urlRouterProvider) {
             var states = [
                 {
@@ -313,6 +331,7 @@
             states.forEach((state) => $stateProvider.state(state));
             $urlRouterProvider.otherwise('/');
         });
+        
         app.controller('orderList',function($scope, $http){
    
             $http.get("reqForms.json")
