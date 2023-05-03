@@ -1,0 +1,136 @@
+<link rel="stylesheet" href="./servicestyle.css">
+
+<div class="content">
+     
+  <title>Product Description Page</title>
+  <!-- Add the following Bootstrap CSS CDN link -->
+  <!-- Add the following custom CSS for swipeable carousel -->
+  
+    <style>
+      .similar-products {
+      overflow-x: auto;
+      white-space: nowrap;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    .similar-products .card {
+      display: inline-block;
+      width: calc(33.33% - 10px);
+      margin-right: 10px;
+    }
+
+    .similar-products .card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+    }
+  </style>
+ 
+
+ 
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-md-6">
+        <img src="assets\iron-cutting-machine-500x500.png" alt="Product Image">
+      </div>
+      <div class="col-md-6">
+        <h1>Product Title</h1>
+        <p>
+          Product description goes here. This is a brief overview of the product, and you can use the
+          "Read More" dropdown to show/hide additional content.
+        </p>
+        <div class="dropdown">
+          <button class="btn btn-primary dropdown-toggle" type="button" id="readMoreDropdown" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Read More
+          </button>
+          <div class="dropdown-menu" aria-labelledby="readMoreDropdown">
+            <p>
+              Additional product details can be shown/hidden using this dropdown. You can include
+              more text, images, or other content in this section.
+            </p>
+          </div>
+        </div>
+        <ul>
+          <li>Product Quality 1</li>
+          <li>Product Quality 2</li>
+          <li>Product Quality 3</li>
+          <li>Product Quality 4</li>
+        </ul>
+        <button class="btn btn-success">Order Now</button>
+      </div>
+    </div>
+  </div>
+
+ 
+
+
+  <div class="container mt-5">
+    <h2>Similar Products</h2>
+    <hr>
+    <div class="similar-products">
+      <div class="card">
+        <img src="assets\wood-cutting-machine-1.jpeg" alt="Similar Product 1">
+        <div class="card-body">
+          <h5 class="card-title">Similar Product 1</h5>
+          <p class="card-text">Product description goes here.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="assets\wood-cutting-machine-1.jpeg" alt="Similar Product 2">
+        <div class="card-body">
+          <h5 class="card-title">Similar Product 2</h5>
+          <p class="card-text">Product description goes here.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="assets\wood-cutting-machine-1.jpeg" alt="Similar Product 3">
+        <div class="card-body">
+          <h5 class="card-title">Similar Product 3</h5>
+          <p class="card-text">Product description goes here.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="assets\wood-cutting-machine-1.jpeg" alt="Similar Product 4">
+        <div class="card-body">
+          <h5 class="card-title">Similar Product 4</h5>
+          <p class="card-text">Product description goes here.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="assets\wood-cutting-machine-1.jpeg" alt="Similar Product 5">
+        <div class="card-body">
+          <h5 class="card-title">Similar Product 5</h5>
+          <p class="card-text">Product description goes here.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add the following jQuery CDN link -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- Add the following Bootstrap JS CDN link -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <!-- Add the following custom JS for swipeable cards -->
+  <script>
+    $(document).ready(function () {
+      $('.similar-products').on('touchstart', function (e) {
+        var xClick = e.originalEvent.touches[0].pageX;
+        $(this).one('touchmove', function (e) {
+          var xMove = e.originalEvent.touches[0].pageX;
+          if (Math.floor(xClick - xMove) > 5) {
+            $(this).carousel('next');
+          }
+          else if (Math.floor(xClick - xMove) < -5) {
+            $(this).carousel('prev');
+          }
+        });
+        $('.similar-products').on('touchend', function () {
+          $(this).off('touchmove');
+        });
+      });
+    });
+  </script>
+ 
+</div>

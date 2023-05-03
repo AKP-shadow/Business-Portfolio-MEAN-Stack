@@ -1,0 +1,49 @@
+<nav aria-label="breadcrumb" style="float:left;padding:10px;text-decoration:none;">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item active"><a href="#">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Order History</li>
+    </ol>
+</nav>
+<div class="filter-buttons">
+  <button class="filter-btn filter-by-date"  ng-click="tableData = sortDate('desc')">
+    <i class="fa fa-calendar"></i>
+    Filter by Date
+  </button>
+  <button class="filter-btn filter-by-status">
+    <i class="fa fa-filter"></i>
+    Filter by Status
+  </button>
+</div>
+<div class="search-container" > 
+  <input type="text" placeholder="Search Quotation Number...">
+  <button type="submit"><i class="fa fa-search"></i></button>
+</div>
+
+
+<table style="width:80vw;transform: translate(-15vw,15vh);" class="table table-hover" >
+ 
+  <thead>
+    <tr>
+      <th scope="col"><button >Quotation # <i class="fa fa-filter"></i></button> </th>
+      <th scope="col"><button ng-click="sortDate()">Date</button></th>
+      <th scope="col"><button>Job Description</button></th>
+      <th scope="col"><button>Location</button></th>
+      <th scope="col"><button>Quotation status</button></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr  ng-repeat="x in tableData track by $index">
+      <th scope="row">{{x.qno}}</th>
+      <td>{{x.date}}</td>
+      <td>{{x.desc}}</td>
+      <td>{{x.location}}</td>
+      <td>{{x.quoatation_Status}}</td>
+    </tr>
+ 
+
+  </tbody>
+</table>
+ 
+
+
+ 
