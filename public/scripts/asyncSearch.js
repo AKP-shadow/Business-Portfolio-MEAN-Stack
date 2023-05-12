@@ -41,7 +41,7 @@ function startState(){
     <div class="card" style="width: 16vw;border-radius: 40px;">
         <img   src="${service_data[txtValue].img}" draggable="false"
             class="card-img-top" alt="...">
-        <a class="btn" ui-sref="hello({id: 2})" ui-sref-active="active" role="button" >Learn More</a>
+        <button class="red-button">Click me</button>
     </div>
 </div>`
   }
@@ -59,7 +59,7 @@ function startStateList(){
     <div class="card" style="width: 16vw;border-radius: 40px;">
         <img   src="${service_data[txtValue].img}" draggable="false"
             class="card-img-top" alt="...">
-        <a class="btn" ui-sref="hello({id: 2})" ui-sref-active="active" role="button" >Learn More</a>
+        <button class="red-button">Click me</button>
     </div>
 </div>`
   }
@@ -89,7 +89,7 @@ function loadDoc() {
             <div class="card" style="width: 16vw;border-radius: 40px;">
                 <img src="${service_data[txtValue].img}" draggable="false"  
                     class="card-img-top" alt="...">
-                <a class="btn " ui-sref="hello({id: 2})" ui-sref-active="active" role="button" onClick ="navToService('onlineleak')">Learn More</a>
+                    <button class="red-button">Click me</button>
             </div>
         </div>`
         console.log(txtValue+"yes")
@@ -100,3 +100,4 @@ function loadDoc() {
   }
 }}
 
+                    // <a class="btn " ui-sref="hello({id: 2})" ui-sref-active="active" role="button" onClick ="navToService('onlineleak')">Learn More</a>

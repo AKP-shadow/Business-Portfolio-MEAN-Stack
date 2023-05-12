@@ -219,6 +219,11 @@
    opacity: 0;
    visibility: hidden;
  }
+ 
+ #Ca.show-modal{
+  opacity: 0;
+  visibility: hidden;
+ }
 
  .overlay {
    position: absolute;

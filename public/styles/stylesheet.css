@@ -447,8 +447,11 @@ nav ul li a:visited {
 
 nav ul li a:hover,
 nav ul li a:visited:hover {
+    font-size: 1.2em;
+    transition:0.2s ease-in-out ;
     background: #2581DC;
     color: #ffffff;
+    text-decoration: none;
 }
 
 nav ul li a:not(:only-child):after,
@@ -833,3 +836,9 @@ blockquote cite:before {
     padding: 30px;
 }
 
+.blur{
+    filter: blur(4px);
+    transform:scale(1.05);
+}
+
+ 
