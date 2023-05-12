@@ -1,0 +1,72 @@
+<div class="login-container">
+
+
+
+    <div class="left">
+        <div class="signIn">
+            <h1>AK Industries</h1>
+            <p> </p>
+            <span>
+                <p>login with social media</p>
+                <a href="#"><i class="fa fa-google" aria-hidden="true"></i></a>
+                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+            </span>
+        </div>
+    </div>
+
+
+    <div class="right">
+        <h5>Login </h5>
+        <p class="small-text">Don't have an account? <a href="#!signup">Create Your Account</a> it takes less than
+            a
+            minute</p>
+        <form name="formSign" method="post" id="formSignIn" action="/login">
+            <div class="inputs">
+                <div class="email-field" ng-controller="myCtrl">
+                    <input name="username" id="uname" type="email" placeholder="Email" ng-model="username"
+                        onchange="{i=1;}">
+                    <br>
+                    <span class="error email-error" ng-if="formSign.username.$invalid && formSign.username.$dirty">
+                        <i class="bx bx-error-circle error-icon"></i>
+                        <p class="error-text">Please enter a valid email</p>
+                    </span>
+
+
+                </div>
+                <div class="pass-field">
+                    <input name="password" id="passwrd" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" type="password"
+                        minlength="8" maxlength="15" placeholder=" Password" required>
+                    <span class="error password-error">
+                        <i class="bx bx-error-circle error-icon"></i>
+                        <p class="error-text">
+                            Please enter atleast 8 charatcer with number, symbol, small and
+                            capital letter.
+                        </p>
+                    </span>
+                </div>
+            </div>
+
+            <br><br>
+
+            <div class="remember-me--forget-password">
+
+                <label>
+                    <input type="checkbox" name="item" checked />
+                    <span class="text-checkbox">Remember me</span>
+                </label>
+                <a href="#">
+                    <p>forget password?</p>
+                </a>
+            </div>
+
+            <br>
+
+            <button onclick="SignInAction();console.log(window.location.href)">Login</button>
+
+
+        </form>
+
+    </div>
+    <div class="fas fa-times"></div>
+</div>
