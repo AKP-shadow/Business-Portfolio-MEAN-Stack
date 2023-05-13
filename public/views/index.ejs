@@ -38,7 +38,7 @@
 
 
 <body ng-app="myApp" style="height:auto ;  font-size:1.5em">
- 
+
 
     <section id="Login" class="overlay">
         <div class="box-form">
@@ -70,12 +70,12 @@
                             <br>
                             <ul style="list-style: none;">
                                 <li><span class="error email-error"
-                                    ng-if="formSign.username.$invalid && formSign.username.$dirty">
-                                    <i class="bx bx-error-circle error-icon"></i>
-                                    <p class="error-text">Please enter a valid email</p>
-                                </span>
+                                        ng-if="formSign.username.$invalid && formSign.username.$dirty">
+                                        <i class="bx bx-error-circle error-icon"></i>
+                                        <p class="error-text">Please enter a valid email</p>
+                                    </span>
                                 <li>
-                                    <span class="error email-error"  id="loginerror">
+                                    <span class="error email-error" id="loginerror">
 
                                     </span>
                                 </li>
@@ -115,7 +115,7 @@
 
                     <br>
 
-                    <input type="submit" >Login</button>
+                    <button type="submit">Login</button>
 
 
                 </form>
@@ -331,25 +331,20 @@
         </footer>
 
     </div>
-    <% if (dataStruct.loggedIn) { %>
-    <div class="my-login-success-widget">
-        <div class="my-icon-container">
-            <i class="fas fa-check-circle"></i>
-        </div>
-        <div class="my-text-container">
-            <h3>Login Successful!</h3>
-            <p>Welcome back, user!</p>
-        </div>
-    </div>
-    <% } %>
-    <% if (dataStruct.success) { %>
+
+    <% if (dataStruct.success || dataStruct.loggedIn) { %>
         <div class="success-widget">
             <div class="icon-container">
                 <i class="fas fa-check-circle"></i>
             </div>
             <div class="text-container">
-                <h3>Registration Successful!</h3>
-                <p>Your account has been created.</p>
+                <h3>
+                    <%=dataStruct.data%>!
+                </h3>
+                <% if (dataStruct.success) { %>
+
+                    <p>Your account has been created.</p>
+                    <% } %>
             </div>
             <div class="loading-line">
                 <div class="line"></div>
@@ -382,7 +377,7 @@
             <script src="scripts/signIn.js"> </script>
             <script src="scripts/apiScript.js"></script>
             <script>
- 
+
 
                 $(document).ready(function () {
                     $('.notify').click(function () {
@@ -485,6 +480,27 @@
                     $locationProvider.html5Mode(true);
                     $urlRouterProvider.otherwise('/');
                 });
+
+
+                app
+                    .controller('videoController', function ($scope) {
+                        $scope.videoSrc = './assets/video.mp4';
+                        $scope.video = document.getElementById("myVideo");
+
+                        $scope.play = function () {
+                            $scope.video.play();
+                        };
+
+                        $scope.pause = function () {
+                            $scope.video.pause();
+                        };
+
+                        $scope.stop = function () {
+                            $scope.video.pause();
+                            $scope.video.currentTime = 0;
+                        };
+                    });
+
 
                 app.controller('orderList', function ($scope, $http) {
 
