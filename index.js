@@ -8,7 +8,7 @@ const UserRouter = require("./controllers/User")
 const quoRouter = require("./controllers/quo")
 const {PORT = 3000} = process.env
 const bodyParser = require("body-parser");
-
+const session = require('express-session');
 
 
 const app = express()
@@ -20,7 +20,11 @@ app.use(express.json()) // parse json bodies
 app.use(bodyParser.urlencoded({
     extended: true
 }));
-
+app.use(session({
+    secret: 'your_secret_key',
+    resave: false,
+    saveUninitialized: true
+  }));
 
 app.set("view engine", "ejs");
   
