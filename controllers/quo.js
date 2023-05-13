@@ -1,8 +1,75 @@
 const { Router } = require("express"); // import Router from express
 const Todo = require("../models/quo"); // import Todo model
 const { isLoggedIn } = require("./middleware"); // import isLoggedIn custom middleware
+const Service = require("../models/services")
+
+// service_data = {
+//   "On-line Leak": {
+//     alias: "online leak", des: "", img: "https://leaksealing.com/wp-content/uploads/2016/06/DSC00049.jpg"
+//   },
+//   "On-line Leak": {
+//     alias: "online leak", des: "", img: "https://leaksealing.com/wp-content/uploads/2016/06/DSC00049.jpg"
+//   },
+//   "On-line Leak": {
+//     alias: "online leak", des: "", img: "https://leaksealing.com/wp-content/uploads/2016/06/DSC00049.jpg"
+//   },
+//   "Grinding and Machining": {
+//     alias: "grinding", des: "", img: "https://ravimachines.com/wp-content/uploads/2016/07/Bench-Grinder-0.5-HP-scaled.jpg"
+//   },
+//   "Cold Welding": {
+//     alias: "welding", des: "", img: "https://www.reliance-foundry.com/wp-content/uploads/Bearings-1.jpg"
+//   },
+//   "Gear and shaft desiging": {
+//     alias: "", des: "", img: "https://www.reliance-foundry.com/wp-content/uploads/Bearings-1.jpg"
+//   },
+//   "Gear and shaft desiging": {
+//     alias: "", des: "", img: "https://www.reliance-foundry.com/wp-content/uploads/Bearings-1.jpg"
+//   },
+//   "Gear and shaft desiging": {
+//     alias: "", des: "", img: "https://www.reliance-foundry.com/wp-content/uploads/Bearings-1.jpg"
+//   },  "Gear and shaft desiging": {
+//     alias: "", des: "", img: "https://www.reliance-foundry.com/wp-content/uploads/Bearings-1.jpg"
+//   }
+// }
+function changeJSON(service_data){
+  serviceData = []
+  for (const [key, value] of Object.entries(service_data)) {
+    serviceData.push({
+      name: key,
+      desc: value.alias,
+      image: value.img,
+    });
+  }
+  return serviceData
+}
+
 
 const router = Router();
+router.get('/populate', async (req, res) => {
+  // Array of product data in JSON format
+    const productData = changeJSON(service_data);
+  console.log(productData);
+
+  try {
+    // Save the product data to the database using async/await
+    const products = await Service.create(productData);
+    res.status(200).json(products);
+  } catch (err) {
+    console.log(err);
+    res.status(500).send('Error populating products');
+  }
+});
+
+router.get('/services', async (req, res) => {
+  try {
+    const services = await Service.find({});
+    console.log("services sent")
+    res.status(200).json(services);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Error retrieving services');
+  }
+});
 
 //custom middleware could also be set at the router level like so
 // router.use(isLoggedIn) then all routes in this router would be protected
