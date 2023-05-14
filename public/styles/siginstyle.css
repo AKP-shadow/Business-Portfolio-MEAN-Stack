@@ -263,19 +263,12 @@
   display: inline;
  }
  
- .password-error {
-   margin-top: 0;
-   display: none;
- }
+  
  .error-icon ,.error-text{
   display: inline;
 }
  
-
- #passwrd:invalid+.password-error {
-   display: block;
- }
-
+ 
 
 
  

@@ -40,7 +40,7 @@
 <body ng-app="myApp" style="height:auto ;  font-size:1.5em">
 
 
-    <section id="Login" class="overlay">
+    <section id="Login" class="overlay" ng-controller="loginCtrl">
         <div class="box-form">
             <div class="left">
                 <div class="signIn">
@@ -62,7 +62,7 @@
                         Your Account</a> it takes less than
                     a
                     minute</p>
-                <form name="formSign" method="post" id="formSignIn" action="/login">
+                <form name="formSign" method="post" id="formSignIn">
                     <div class="inputs">
                         <div class="email-field">
                             <input name="username" id="uname" type="email" placeholder="Email" ng-model="username"
@@ -73,10 +73,12 @@
                                         ng-if="formSign.username.$invalid && formSign.username.$dirty">
                                         <i class="bx bx-error-circle error-icon"></i>
                                         <p class="error-text">Please enter a valid email</p>
-                                    </span>
+                                    </span></li>
                                 <li>
-                                    <span class="error email-error" id="loginerror">
-
+                                    <span class="error email-error" id="loginerror" ng-if=usererr
+                                        ng-click="usererr=false;">
+                                        <i class="bx bx-error-circle error-icon"></i>
+                                        <p class="error-text">Username does not exist</p>
                                     </span>
                                 </li>
 
@@ -89,13 +91,28 @@
                         </div>
                         <div class="pass-field">
                             <input name="password" id="passwrd" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                                type="password" minlength="8" maxlength="15" placeholder=" Password" required>
-                            <span class="error password-error">
-                                <i class="bx bx-error-circle error-icon"></i>
-                                <p class="error-text">
-                                    Please enter atleast 8 charatcer with number, symbol, small and
-                                    capital letter.
-                                </p>
+                                type="password" minlength="8" maxlength="15" placeholder=" Password" ng-model="password"
+                                required>
+                            <ul style="list-style: none;">
+                                <li>
+                                    <span class="error password-error"
+                                        ng-if="formSign.password.$invalid && formSign.password.$dirty">
+                                        <i class="bx bx-error-circle error-icon"></i>
+                                        <p class="error-text">
+                                            Please enter atleast 8 charatcer with number, symbol, small and
+                                            capital letter.
+                                        </p>
+                                </li>
+                                <li>
+                                    <span class="error password-error" ng-if=passerr>
+                                        <i class="bx bx-error-circle error-icon"></i>
+                                        <p class="error-text">
+                                            Please enter atleast 8 charatcer with number, symbol, small and
+                                            capital letter.
+                                        </p>
+                                </li>
+                            </ul>
+
                             </span>
                         </div>
                     </div>
@@ -115,7 +132,7 @@
 
                     <br>
 
-                    <button type="submit">Login</button>
+                    <button type="submit" ng-click="login()">Login</button>
 
 
                 </form>
@@ -124,7 +141,7 @@
             <div id="logTimes" class="fas fa-times log"></div>
         </div>
     </section>
-    <section id="Signup" class="overlay">
+    <section id="Signup" class="overlay" ng-controller="signupCtrl">
         <div class="box-form">
             <div class="left">
                 <div class="signIn">
@@ -143,7 +160,7 @@
             <div class="right" style="transform: translate(-60px,70px);">
                 <h5>Sign Up </h5>
                 <p class="small-text">Already have an account? <a class="createAcc" href="#">Sign in then</a> </p>
-                <form name="formSignup" method="post" id="formSignup" action="/signup">
+                <form name="formSignup" method="post" id="formSignup" >
                     <div class="inputs">
                         <div class="email-field">
                             <input name="username" id="unamee" type="email" placeholder=" Email" ng-model="username"
@@ -174,8 +191,8 @@
                         </div>
                         <div class="pass-field">
                             <input name="password" id="passwrds" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                                type="password" minlength="8" maxlength="15" placeholder=" Password" required>
-                            <span class="error password-error">
+                                type="password" minlength="8" maxlength="15" placeholder="Password" ng-model="password" required>
+                            <span class="error password-error" >
                                 <i class="bx bx-error-circle error-icon"></i>
                                 <p class="error-text">
                                     Please enter atleast 8 charatcer with number, symbol, small and
@@ -200,7 +217,7 @@
 
                     <br>
 
-                    <button onclick=" console.log(window.location.href)">Sign Up</button>
+                    <button ng-click="signup()">Sign Up</button>
 
 
                 </form>
@@ -210,8 +227,8 @@
         </div>
 
     </section>
-    <div class="webContent">
-        <section id="navigation" ng-controller="loginCtrl">
+    <div class="webContent" >
+        <section id="navigation" ng-controller="navCtrl">
             <div class="nav-container">
                 <div class="brand">
                     <img id="logo" src="/assets/logo.png" alt="">
@@ -235,7 +252,7 @@
                         <li>
                             <a href="contact">Contact</a>
                         </li>
-                        <li id="signbutton" ng-switch="<%= dataStruct.loggedin%>">
+                        <li id="signbutton" ng-switch="loggedin">
 
                             <button ng-switch-when="false" class="sign-in signbtn"
                                 onclick="window.location.href='#';"><span>Sign
@@ -261,6 +278,7 @@
                     </ul>
                 </nav>
             </div>
+
         </section>
         <div class="homeContent" ui-view style="min-height:90vh" ng-controller="orderList">
         </div>
@@ -331,276 +349,438 @@
         </footer>
 
     </div>
+    <div ng-controller="msgCtrl" ng-show="loggedin || success" >
 
-    <% if (dataStruct.loggedin || dataStruct.success) { %>
-        <div class="success-widget">
-            <div class="icon-container">
-                <i class="fas fa-check-circle"></i>
+            <div class="success-widget" >
+                <div class="icon-container">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="text-container">
+                    <h3>
+                        {{loading}}
+                    </h3>
+                    
+
+                        <p ng-show="success">Your account has been created.</p>
+                </div>
+                <div class="loading-line">
+                    <div class="line"></div>
+                </div>
             </div>
-            <div class="text-container">
-                <h3>
-                    <%=dataStruct.data%>!
-                </h3>
-                <% if (dataStruct.success) { %>
-
-                    <p>Your account has been created.</p>
-                    <% } %>
-            </div>
-            <div class="loading-line">
-                <div class="line"></div>
-            </div>
-        </div>
-        <% } %>
+    </div>
 
 
 
 
 
 
-            <script src="scripts/script.js"></script>
-            <!-- <script src="parallaxBar.js"></script> -->
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.30/angular-ui-router.min.js"
-                integrity="sha512-HdDqpFK+5KwK5gZTuViiNt6aw/dBc3d0pUArax73z0fYN8UXiSozGNTo3MFx4pwbBPldf5gaMUq/EqposBQyWQ=="
-                crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-            <script src="scripts/services.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-            <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-            <script
-                src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
-            <script src="scripts/nextPage.js"></script>
-            <script src="scripts/asyncSearch.js">
-
-            </script>
-            <script src="scripts/signIn.js"> </script>
-            <script src="scripts/apiScript.js"></script>
-            <script>
 
 
-                $(document).ready(function () {
-                    $('.notify').click(function () {
-                        $('.msg').hide();
-                    })
-                    $('.createAcc').click(function () {
-                        $('#Login').toggleClass("show-modal");
-                        $('#Signup').toggleClass("show-modal");
-                    })
-                    $('.signbtn').click(function () {
-                        $('#Login').toggleClass("show-modal");
+    <script src="scripts/script.js"></script>
+    <!-- <script src="parallaxBar.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.30/angular-ui-router.min.js"
+        integrity="sha512-HdDqpFK+5KwK5gZTuViiNt6aw/dBc3d0pUArax73z0fYN8UXiSozGNTo3MFx4pwbBPldf5gaMUq/EqposBQyWQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="scripts/services.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+    <script src="scripts/nextPage.js"></script>
+    <script src="scripts/asyncSearch.js">
 
-                        $('#navigation').toggleClass('blur')
-                        $('.homeContent').toggleClass('blur')
-                        $('.footer-distributed').toggleClass('blur')
-
-                    });
-
-                    $('#logTimes').click(function () {
-                        $('#Login').toggleClass("show-modal");
-                        $('#navigation').toggleClass('blur')
-                        $('.homeContent').toggleClass('blur')
-                        $('.footer-distributed').toggleClass('blur')
-
-                    });
-                    $('#signTimes').click(function () {
-                        $('#Signup').toggleClass("show-modal");
-                        $('#navigation').toggleClass('blur')
-                        $('.homeContent').toggleClass('blur')
-                        $('.footer-distributed').toggleClass('blur')
-
-                    });
-                });
-                var app = angular.module('myApp', ['ui.router']);
+    </script>
+    <script src="scripts/signIn.js"> </script>
+    <script src="scripts/apiScript.js"></script>
+    <script>
 
 
-                app.controller('loginCtrl', function ($scope) {
-                    $scope.loggedIn = true;
-                    $scope.logout = function () {
-                        $scope.loggedIn = false;
-                        return $scope.loggedIn;
-                        // Code to logout user
-                    };
-                });
+        $(document).ready(function () {
+            $('.notify').click(function () {
+                $('.msg').hide();
+            })
+            $('.createAcc').click(function () {
+                $('#Login').toggleClass("show-modal");
+                $('#Signup').toggleClass("show-modal");
+            })
+            $('.signbtn').click(function () {
+                $('#Login').toggleClass("show-modal");
 
-                app.controller('myCtrl', function ($scope) {
-                    $scope.username = dataStruct.data;
+                $('#navigation').toggleClass('blur')
+                $('.homeContent').toggleClass('blur')
+                $('.footer-distributed').toggleClass('blur')
 
-                });
-                app.controller('homeCtrl', function ($scope) {
-                    $scope.layout = 'list';
+            });
 
-                    $scope.changeLayout = function () {
-                        if ($scope.layout == 'list') {
-                            $scope.layout = 'grid'
+            $('#logTimes').click(function () {
+                $('#Login').toggleClass("show-modal");
+                $('#navigation').toggleClass('blur')
+                $('.homeContent').toggleClass('blur')
+                $('.footer-distributed').toggleClass('blur')
+
+            });
+            $('#signTimes').click(function () {
+                $('#Signup').toggleClass("show-modal");
+                $('#navigation').toggleClass('blur')
+                $('.homeContent').toggleClass('blur')
+                $('.footer-distributed').toggleClass('blur')
+
+            });
+
+        });
+        
+        
+        
+        
+        var app = angular.module('myApp', ['ui.router']);
+
+
+        app.service('SessionService', function () {
+            const service = this;
+
+            service.setUsername = function (username) {
+                sessionStorage.setItem('username', username);
+            };
+            service.setData = function (key, value) {
+                sessionStorage.setItem(key, JSON.stringify(value));
+            };
+            service.getData = function (key) {
+                return sessionStorage.getItem(key);
+            };
+
+            service.getUsername = function () {
+                return sessionStorage.getItem('username');
+            };
+
+        });
+
+        app.controller('signupCtrl', function ($scope, $http, $window, SessionService) {
+            $scope.usererr = false
+            $scope.signup = function () {
+                // Send POST request to login API
+                $http.post('/signup', {
+                    username: $scope.username,
+                    password: $scope.password
+                }).then(function (response) {
+                    // Login successful, store username in session
+                    const username = response.data.username;
+                    SessionService.setUsername(username);
+                    SessionService.setData('data', response.data)
+                    $scope.loginUser = SessionService.getUsername()
+                    $scope.loginData = JSON.parse(SessionService.getData('data'))
+                    // Redirect to home page
+                    console.log($scope.loginData.dataStruct.loggedin)
+                    if (!$scope.loginData.dataStruct.success) {
+                            $scope.usererr = true;
                         }
                         else {
-                            $scope.layout = 'list'
+                     $window.location.reload();
+                }
+                }).catch(function (error) {
+                    console.error(error);
+                });
+            };
+        });
+
+        app.controller('loginCtrl', function ($scope, $http, $window, SessionService) {
+            $scope.passerr = false
+            $scope.usererr = false
+            $scope.login = function () {
+                // Send POST request to login API
+                $http.post('/login', {
+                    username: $scope.username,
+                    password: $scope.password
+                }).then(function (response) {
+                    // Login successful, store username in session
+                    const username = response.data.username;
+                    SessionService.setUsername(username);
+                    SessionService.setData('data', response.data)
+                    $scope.loginUser = SessionService.getUsername()
+                    $scope.loginData = JSON.parse(SessionService.getData('data'))
+                    // Redirect to home page
+                    console.log($scope.loginData.dataStruct.loggedin)
+                    if (!$scope.loginData.dataStruct.loggedin) {
+                        if ($scope.loginData.dataStruct.usererr) {
+                            $scope.usererr = true;
                         }
-                        console.log($scope.layout)
+                        else {
+                            $scope.passerr = true;
+                        }
                     }
+                    else{
+                     $window.location.reload();
+
+                    }
+                }).catch(function (error) {
+                    console.error(error);
+                });
+            };
+        });
+
+        app.controller('myCtrl', function ($scope) {
+            $scope.username = dataStruct.data;
+
+        });
+        app.controller('homeCtrl', function ($scope, SessionService) {
+            $scope.service_data  =   {}
+            serviceinfo = []
+            fetch('/services')
+            .then(response => response.json())
+            .then(data => {
+              data.forEach(product => {
+                const { name, desc, image } = product;
+                serviceinfo.push(name)
+                if (!service_data[name]) {
+                  $scope.service_data[name] = {};
+                }
+                $scope.service_data[name]['img'] = image;
+              });
+              return $scope.service_data
+            })
+            .catch(error => console.error(error));
+            console.log("Test")
+            console.log($scope.service_data.name)
+            $scope.showform = function(){
+                    console.log('yes')
+                    $('#Signup').toggleClass("show-modal");
+                    $('#navigation').toggleClass('blur')
+                    $('.homeContent').toggleClass('blur')
+                    $('.footer-distributed').toggleClass('blur')
+            }
+            a = SessionService.getData('data')
+            if(a){
+                $scope.SessionData = JSON.parse(a)
+                $scope.loggedin = $scope.SessionData.dataStruct.loggedin;
+                $scope.success = $scope.SessionData.dataStruct.success;
+            }
+            else{
+                $scope.loggedin = false
+                $scope.success = false
+            }
+            $scope.layout = 'list';
+
+            $scope.changeLayout = function () {
+                if ($scope.layout == 'list') {
+                    $scope.layout = 'grid'
+                }
+                else {
+                    $scope.layout = 'list'
+                }
+                console.log($scope.layout)
+            }
+        })
+        app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
+            var states = [
+                {
+                    name: 'params',
+                    url: '/',
+                    templateUrl: 'views/home.html',
+
+                },
+                {
+                    name: 'hello',
+                    url: '/hello/{id}',
+                    templateUrl: 'views/service.html'
+                },
+
+                {
+                    name: 'orderTable',
+                    url: '/OrderHistory',
+                    templateUrl: 'views/orderHistory.html'
+                },
+                {
+                    name: 'Contact',
+                    url: '/contact',
+                    templateUrl: 'views/contact.html'
+                },
+                {
+                    name: 'reqForm',
+                    url: '/reqForm',
+                    templateUrl: 'views/sample.html'
+                }
+                ,
+                {
+                    name: 'pricing',
+                    url: '/pricing',
+                    templateUrl: 'views/pricing.html'
+                }
+
+            ];
+            states.forEach((state) => $stateProvider.state(state));
+            $locationProvider.html5Mode(true);
+            $urlRouterProvider.otherwise('/');
+        });
+
+
+        app
+            .controller('videoController', function ($scope) {
+                $scope.videoSrc = './assets/video.mp4';
+                $scope.video = document.getElementById("myVideo");
+
+                $scope.play = function () {
+                    $scope.video.play();
+                };
+
+                $scope.pause = function () {
+                    $scope.video.pause();
+                };
+
+                $scope.stop = function () {
+                    $scope.video.pause();
+                    $scope.video.currentTime = 0;
+                };
+            });
+
+        app.service('loadMsg',function(){
+            this.msg = "loading"
+            this.changeMsg = function(newmsg){
+                this.msg = newmsg
+            }
+        })
+
+        app.controller('msgCtrl', function ($scope, SessionService,loadMsg) {
+            a = SessionService.getData('data')
+            if(a){
+                $scope.SessionData = JSON.parse(a)
+                $scope.loggedin = $scope.SessionData.dataStruct.loggedin;
+                $scope.success = $scope.SessionData.dataStruct.success;
+                loadMsg.changeMsg($scope.SessionData.dataStruct.data)
+            }
+            else{
+                $scope.loggedin = false
+                $scope.success = false
+            }
+            $scope.loading = loadMsg.msg
+
+
+        });
+        app.controller('navCtrl', function ($scope, SessionService,$window) {
+            a = SessionService.getData('data')
+            if(a){
+                $scope.SessionData = JSON.parse(a)
+                $scope.loggedin = $scope.SessionData.dataStruct.loggedin;
+                $scope.success = $scope.SessionData.dataStruct.success;
+            }
+            else{
+                $scope.loggedin = false
+                $scope.success = false
+            }
+          
+
+
+            $scope.logout = function(key){
+                $window.sessionStorage.clear();
+                $window.location.href='/'
+                $window.location.reload();
+            }
+
+        });
+
+
+        app.controller('orderList', function ($scope, SessionService) {
+            a = SessionService.getData('data')
+            if(a){
+                $scope.SessionData = JSON.parse(a)
+                $scope.username = $scope.SessionData.dataStruct.username;
+            }
+            else{
+                $scope.username = ""
+            }
+          
+
+            $scope.refreshTable = function () {
+                fetch('/quotationList', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username: "asab@231.com", }),
                 })
-                app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
-                    var states = [
-                        {
-                            name: 'params',
-                            url: '/',
-                            templateUrl: 'views/home.html',
-
-                        },
-                        {
-                            name: 'hello',
-                            url: '/hello/{id}',
-                            templateUrl: 'views/service.html'
-                        },
-
-                        {
-                            name: 'orderTable',
-                            url: '/OrderHistory',
-                            templateUrl: 'views/orderHistory.html'
-                        },
-                        {
-                            name: 'Contact',
-                            url: '/contact',
-                            templateUrl: 'views/contact.html'
-                        },
-                        {
-                            name: 'reqForm',
-                            url: '/reqForm',
-                            templateUrl: 'views/sample.html'
-                        }
-                        ,
-                        {
-                            name: 'pricing',
-                            url: '/pricing',
-                            templateUrl: 'views/pricing.html'
-                        }
-
-                    ];
-                    states.forEach((state) => $stateProvider.state(state));
-                    $locationProvider.html5Mode(true);
-                    $urlRouterProvider.otherwise('/');
-                });
-
-
-                app
-                    .controller('videoController', function ($scope) {
-                        $scope.videoSrc = './assets/video.mp4';
-                        $scope.video = document.getElementById("myVideo");
-
-                        $scope.play = function () {
-                            $scope.video.play();
-                        };
-
-                        $scope.pause = function () {
-                            $scope.video.pause();
-                        };
-
-                        $scope.stop = function () {
-                            $scope.video.pause();
-                            $scope.video.currentTime = 0;
-                        };
-                    });
-                    
-                    
-     
-
-
-                app.controller('orderList', function ($scope, $http) {
-
-
-
-                    $scope.refreshTable = function(){
-                        fetch('/quotationList', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body:  JSON.stringify({ username:'aadhash2001@gmail.com',}),
-                    })
-                        .then(response => response.json())
-                        .then(data => {
-                            $scope.tableData = data
-                            console.log($scope.tableData)
-                        })
-                        .catch(error => {
-                            console.error(error);
-                        });
-                    }
-                    $scope.refreshTable();
-
-                    $scope.deleteRequest = function(id){
-                        fetch(`/collection/${id}`, {
-                        method: 'DELETE'
-                        }).then(response => {
-                        if (response.ok) {
-                            console.log('Record deleted successfully');
-                            $scope.refreshTable()
-                        } else {
-                            console.log('Error deleting record');
-                        }
-                        }).catch(error => {
-                        console.log(error);
-                        });
-
-                    }
-
- 
-                    $scope.getTime = function(dateStr) {
-                        const dateObj = new Date(dateStr);
-                        const day = dateObj.getDate();
-                        const month = dateObj.getMonth() + 1;
-                        const year = dateObj.getFullYear();
-                        return `${day}/${month}/${year}`;
-                    }
-                    $scope.data = function () { return $scope.tableData }
-                    $scope.order = true
-                    $scope.sortList = function () {
-
-                        if ($scope.order) {
-                            $scope.tableData.sort();
-                            console.log(1)
-                        }
-                        else {
-                            $scope.tableData.reverse()
-                        }
-                        $scope.order = !$scope.order
-
-                    };
-                    $(window).on('beforeunload', function () {
-                        $(window).scrollTop(0);
-                    });
-                    $scope.sortDate = function () {
-                        $scope.tableData.sort(function (date1, date2) {
-                            var parts1 = date1['date'].split('/');
-                            var parts2 = date2['date'].split('/');
-
-                            // Convert the date strings to Date objects for comparison
-                            var dateObj1 = new Date(parts1[2], parts1[1] - 1, parts1[0]);
-                            var dateObj2 = new Date(parts2[2], parts2[1] - 1, parts2[0]);
-                            if ($scope.order) {
-                                change = 1
-                            }
-                            else {
-                                change = -1
-                            }
-
-                            // Compare the date objects and return -1, 0, or 1 for sorting
-                            if (dateObj1 < dateObj2) {
-                                return -change;
-                            } else {
-                                return change;
-                            }
-
-
-                        });
-                        $scope.order = !$scope.order
-                        console.log($scope.order)
+                    .then(response => response.json())
+                    .then(data => {
+                        $scope.tableData = data
                         console.log($scope.tableData)
-                        return $scope.tableData;
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
+            }
+            $scope.refreshTable();
+
+            $scope.deleteRequest = function (id) {
+                fetch(`/collection/${id}`, {
+                    method: 'DELETE'
+                }).then(response => {
+                    if (response.ok) {
+                        console.log('Record deleted successfully');
+                        $scope.refreshTable()
+                    } else {
+                        console.log('Error deleting record');
                     }
-                })
-            </script>
+                }).catch(error => {
+                    console.log(error);
+                });
+
+            }
+
+
+            $scope.getTime = function (dateStr) {
+                const dateObj = new Date(dateStr);
+                const day = dateObj.getDate();
+                const month = dateObj.getMonth() + 1;
+                const year = dateObj.getFullYear();
+                return `${day}/${month}/${year}`;
+            }
+            $scope.data = function () { return $scope.tableData }
+            $scope.order = true
+            $scope.sortList = function () {
+
+                if ($scope.order) {
+                    $scope.tableData.sort();
+                    console.log(1)
+                }
+                else {
+                    $scope.tableData.reverse()
+                }
+                $scope.order = !$scope.order
+
+            };
+            $(window).on('beforeunload', function () {
+                $(window).scrollTop(0);
+            });
+            $scope.sortDate = function () {
+                $scope.tableData.sort(function (date1, date2) {
+                    var parts1 = date1['date'].split('/');
+                    var parts2 = date2['date'].split('/');
+
+                    // Convert the date strings to Date objects for comparison
+                    var dateObj1 = new Date(parts1[2], parts1[1] - 1, parts1[0]);
+                    var dateObj2 = new Date(parts2[2], parts2[1] - 1, parts2[0]);
+                    if ($scope.order) {
+                        change = 1
+                    }
+                    else {
+                        change = -1
+                    }
+
+                    // Compare the date objects and return -1, 0, or 1 for sorting
+                    if (dateObj1 < dateObj2) {
+                        return -change;
+                    } else {
+                        return change;
+                    }
+
+
+                });
+                $scope.order = !$scope.order
+                console.log($scope.order)
+                console.log($scope.tableData)
+                return $scope.tableData;
+            }
+        })
+    </script>
 
 </body>
 

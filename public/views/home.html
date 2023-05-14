@@ -131,9 +131,7 @@
             <!-- Wrapper for slides -->
             <div class="carousel-inner">
                 <div class="item active">
-                    <img class="imgCarousel"
-                        src="assets\equipments.jpg"
-                        style=" height: 70vh;" usemap="#workmap">
+                    <img class="imgCarousel" src="assets\equipments.jpg" style=" height: 70vh;" usemap="#workmap">
                     <map name="workmap">
                         <area shape="rect" coords="34,44,270,350" alt="Computer" ui-sref="hello({id: 2})"
                             ui-sref-active="active">
@@ -176,7 +174,7 @@
 
 <div class="hr"></div>
 <section id="services" ng-controller="homeCtrl">
-    <h1 class="section-title">Services & Machinery</h1>
+    <h1 class="section-title">Services & Machinery <button ng-show="admin" class="editbutton1"><i class="fa fa-pencil-square-o"></i> </button><button ng-show="admin"  class="editbutton1 gear"><i class="fa fa-gear"></i> </button></h1>
     <p class="hidden subtitle" style="letter-spacing: 2px;">Services</p>
     <div class="form-outline">
 
@@ -198,7 +196,7 @@
         <div ng-switch-when="list" class="grid-container">
         </div>
         <div id="service-list" ng-switch-when="grid">
-            <ul class="list-group list-group-light" >
+            <ul class="list-group list-group-light">
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                     <div class="d-flex align-items-center">
                         <img src="https://mdbootstrap.com/img/new/avatars/8.jpg" alt=""
@@ -240,7 +238,7 @@
 <div class="hr"></div>
 
 <section id="portfolio">
-    <h1 class="section-title">Recent Installs</h1>
+    <h1 class="section-title">Recent Installs <button ng-show="admin" class="editbutton1"><i class="fa fa-pencil-square-o"></i> </button><button ng-show="admin"  style="transform:translateX(40vw)" class="editbutton1 gear"><i class="fa fa-gear"></i> </button></h1>
     <p class="hidden subtitle">Portfolio</p>
     <div class="wrapper">
 
@@ -289,8 +287,8 @@
 </section>
 
 <div class="hr"></div>
-<section id="partners"  ng-controller="videoController">
-    <h1 class="section-title">Partners</h1>
+<section id="partners" ng-controller="videoController">
+    <h1 class="section-title">Partners <button ng-show="admin" class="editbutton1"><i class="fa fa-pencil-square-o"></i> </button><button ng-show="admin" style="transform:translateX(45vw)" class="editbutton1 gear"><i class="fa fa-gear"></i> </button></h1>
     <img style="left:16%" class="company" src="./assets/kothari_logo.jfif" alt="">
     <img style="left:30%;top:35%;" class="company" src="./assets/ineos.png" alt="">
     <img style="left:25%;top:70%;" class="company" src="./assets/manali.jfif" alt="">
@@ -301,12 +299,12 @@
             title="MapleSim Overview: Model-Driven Innovation for Machine Design" frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowfullscreen></iframe> -->
-            <video id="myVideo" width="595" height="335"  >
-                <source src="{{videoSrc}}" type="video/mp4">
-              </video>
-              <button ng-click="play()">Play</button>
-              <button ng-click="pause()">Pause</button>
-              <button ng-click="stop()">Stop</button>
+        <video id="myVideo" width="595" height="335">
+            <source src="{{videoSrc}}" type="video/mp4">
+        </video>
+        <button ng-click="play()">Play</button>
+        <button ng-click="pause()">Pause</button>
+        <button ng-click="stop()">Stop</button>
     </div>
 </section>
 
@@ -321,14 +319,37 @@
         them with innovative solutions and outstanding customer service.</p>
 
 </div>
-<button onclick="window.location.href='/reqForm';"
+
+<div ng-controller="homeCtrl" ng-switch=loggedin>
+    <button ng-switch-when=true onclick="window.location.href='/reqForm';"
     style="position:absolute;width: 15vw;height:8vh;transform: translate(43vw,-13vh);" class="sign-in  "><i
         class="fa fa-file-text-o" style="font-size:25px;"></i><span style="padding-left:15px">Request
-        Quotation</span> </button>
+        Quotation</span>
+</button>
+
+    <button   ng-switch-when=false
+        style="position:absolute;width: 15vw;height:8vh;transform: translate(43vw,-13vh);" ng-click="showform()" class="sign-in reqbtn"><i
+            class="fa fa-file-text-o" style="font-size:25px;"></i><span style="padding-left:15px">Request
+            Quotation</span>
+    </button>
+
+</div>
+
+
+
+
+    
 </div>
 
 <script>  serviceinfo = ["On-line Leak", "On-line Leak", "On-line Leak", "Grinding and Machining", "Gear and shaft desiging", "Cold Welding", "Gear and shaft desiging", "Gear and shaft desiging"]
+    $('#reqForm').click(function () {
+        $('#Login').toggleClass("show-modal");
 
+        $('#navigation').toggleClass('blur')
+        $('.homeContent').toggleClass('blur')
+        $('.footer-distributed').toggleClass('blur')
+
+    });
     for (i = 0; i < serviceinfo.length; i++) {
         txtValue = serviceinfo[i];
         // console.log(document.getElementsByClassName("grid-container")[0].size/)
