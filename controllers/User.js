@@ -59,7 +59,7 @@ router.post("/login", async (req, res) => {
             if (result) {
                 // sign token and send it in response
                 const token = await jwt.sign({ username: user.username }, SECRET);
-                dataStruct = {unameExist: false,loggedin:true, success: false ,data: `You are now signed in as $req.body.username.`}
+                dataStruct = {unameExist: false,loggedin:true, success: false ,data: `You are now signed in as $req.body.username.`,subdata :""}
                 res.render('index',{dataStruct})
             // console.log('1')
             // res.json({ token ,msg:true,dataStruct,error:''});
