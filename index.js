@@ -12,7 +12,12 @@ const session = require('express-session');
 
 
 const app = express()
-
+const { SECRET = "secret" } = process.env;
+app.use(session({
+    secret: SECRET,
+    resave: false,
+    saveUninitialized: true
+  }));
 // GLOBAL MIDDLEWARE
 app.use(cors()) // add cors headers
 app.use(morgan("tiny")) // log the request for debugging
@@ -20,11 +25,7 @@ app.use(express.json()) // parse json bodies
 app.use(bodyParser.urlencoded({
     extended: true
 }));
-app.use(session({
-    secret: 'your_secret_key',
-    resave: false,
-    saveUninitialized: true
-  }));
+
 
 app.set("view engine", "ejs");
   

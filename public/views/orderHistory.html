@@ -34,7 +34,7 @@
   <tbody>
     <tr  ng-repeat="x in tableData track by $index">
       <th scope="row">{{$index}}</th>
-      <td>{{getDate(x.time)}}</td>
+      <td>{{getTime(x.time)}}</td>
       <td>{{x.problemDescription}}</td>
       <td>{{x.address.city}}</td>
       <td>{{x.quotation.status}}</td>
