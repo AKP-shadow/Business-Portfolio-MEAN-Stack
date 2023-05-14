@@ -64,7 +64,7 @@
                     minute</p>
                 <form name="formSign" method="post" id="formSignIn" action="/login">
                     <div class="inputs">
-                        <div class="email-field" ng-controller="myCtrl">
+                        <div class="email-field">
                             <input name="username" id="uname" type="email" placeholder="Email" ng-model="username"
                                 onchange="{i=1;}">
                             <br>
@@ -145,7 +145,7 @@
                 <p class="small-text">Already have an account? <a class="createAcc" href="#">Sign in then</a> </p>
                 <form name="formSignup" method="post" id="formSignup" action="/signup">
                     <div class="inputs">
-                        <div class="email-field" ng-controller="myCtrl">
+                        <div class="email-field">
                             <input name="username" id="unamee" type="email" placeholder=" Email" ng-model="username"
                                 onchange="{i=1;}">
                             <br>
@@ -332,7 +332,7 @@
 
     </div>
 
-    <% if (dataStruct.success || dataStruct.loggedIn) { %>
+    <% if (dataStruct.loggedin || dataStruct.success) { %>
         <div class="success-widget">
             <div class="icon-container">
                 <i class="fas fa-check-circle"></i>
@@ -422,8 +422,9 @@
                         // Code to logout user
                     };
                 });
+
                 app.controller('myCtrl', function ($scope) {
-                    $scope.username = "";
+                    $scope.username = dataStruct.data;
 
                 });
                 app.controller('homeCtrl', function ($scope) {
@@ -500,16 +501,58 @@
                             $scope.video.currentTime = 0;
                         };
                     });
+                    
+                    
+     
 
 
                 app.controller('orderList', function ($scope, $http) {
 
-                    $http.get("data/reqForms.json")
-                        .then(function (response) {
 
-                            $scope.tableData = response.data;
+
+                    $scope.refreshTable = function(){
+                        fetch('/quotationList', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body:  JSON.stringify({ username:'aadhash2001@gmail.com',}),
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            $scope.tableData = data
+                            console.log($scope.tableData)
+                        })
+                        .catch(error => {
+                            console.error(error);
+                        });
+                    }
+                    $scope.refreshTable();
+
+                    $scope.deleteRequest = function(id){
+                        fetch(`/collection/${id}`, {
+                        method: 'DELETE'
+                        }).then(response => {
+                        if (response.ok) {
+                            console.log('Record deleted successfully');
+                            $scope.refreshTable()
+                        } else {
+                            console.log('Error deleting record');
+                        }
+                        }).catch(error => {
+                        console.log(error);
                         });
 
+                    }
+
+ 
+                    $scope.getTime = function(dateStr) {
+                        const dateObj = new Date(dateStr);
+                        const day = dateObj.getDate();
+                        const month = dateObj.getMonth() + 1;
+                        const year = dateObj.getFullYear();
+                        return `${day}/${month}/${year}`;
+                    }
                     $scope.data = function () { return $scope.tableData }
                     $scope.order = true
                     $scope.sortList = function () {

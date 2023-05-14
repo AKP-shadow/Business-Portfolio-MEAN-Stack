@@ -4,6 +4,7 @@ const User = require("../models/User"); // import user model
 const bcrypt = require("bcrypt"); // import bcrypt to hash passwords
 const jwt = require("jsonwebtoken"); // import jwt to sign tokens
 
+
 const router = Router(); // create router to create route bundle
 
 //DESTRUCTURE ENV VARIABLES WITH DEFAULTS
@@ -21,7 +22,7 @@ router.post("/signup", async (req, res) => {
             const user_exist = User.findOne({ username: req.body.username });
             console.log(user_exist.username)
             if (user_exist.username) {
-                dataStruct = { t: true,loggedin:false, success: false, data: 'User Name already exist' }
+                dataStruct = { t: true,loggedin:false, success: false,username:req.body.username, data: 'User Name already exist' }
                 console.log('failed')
                 res.json(dataStruct)
 
@@ -30,7 +31,7 @@ router.post("/signup", async (req, res) => {
                 req.body.password = hash
                 console.log(req.body)
                 const user = User.create(req.body);
-                dataStruct = {unameExist: false,loggedin:true, success: true ,data:'Registration successful'}
+                dataStruct = {unameExist: false,loggedin:true,username:req.body.username, success: true ,data:'Registration successful'}
                 console.log('success')
                 res.render('index', {dataStruct});
             }
@@ -46,7 +47,7 @@ router.post("/signup", async (req, res) => {
 
 // Login route to verify a user and get a token
 router.post("/login", async (req, res) => {
-    console.log(req.body.username)
+ 
     
     try {
         
@@ -57,19 +58,24 @@ router.post("/login", async (req, res) => {
             //check if password matches
             const result = await bcrypt.compare(req.body.password, user.password);
             if (result) {
+                req.session.loggedin = true;
+                req.session.username = req.body.username;
+                console.log(req.session.username)
                 // sign token and send it in response
                 const token = await jwt.sign({ username: user.username }, SECRET);
-                dataStruct = {unameExist: false,loggedin:true, success: false ,data: `You are now signed in as $req.body.username.`,subdata :""}
+                dataStruct = {unameExist: false,loggedin:true, success: false ,username:req.body.username,data: "You are now signed in as" + req.body.username}
                 res.render('index',{dataStruct})
             // console.log('1')
             // res.json({ token ,msg:true,dataStruct,error:''});
             } else {
             console.log('2')
-            res.status(400).json({ error: "password doesn't match",msg:false});
+            dataStruct = {unameExist: false,loggedin:false, success: false ,username:req.body.username,data: `Password does not match`}
+            res.render('index',{dataStruct})
             }
         } else {
             console.log('3')
-            res.status(400).json({ error: "User doesn't exist",msg:false });
+            dataStruct = {unameExist: false,loggedin:false, success: false ,username:req.body.username,data: `Username does not exist`}
+            res.render('index',{dataStruct})
         }
     } catch (error) {
         console.log('4')

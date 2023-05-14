@@ -3,34 +3,34 @@ const Todo = require("../models/quo"); // import Todo model
 const { isLoggedIn } = require("./middleware"); // import isLoggedIn custom middleware
 const Service = require("../models/services")
 
-// service_data = {
-//   "On-line Leak": {
-//     alias: "online leak", des: "", img: "https://leaksealing.com/wp-content/uploads/2016/06/DSC00049.jpg"
-//   },
-//   "On-line Leak": {
-//     alias: "online leak", des: "", img: "https://leaksealing.com/wp-content/uploads/2016/06/DSC00049.jpg"
-//   },
-//   "On-line Leak": {
-//     alias: "online leak", des: "", img: "https://leaksealing.com/wp-content/uploads/2016/06/DSC00049.jpg"
-//   },
-//   "Grinding and Machining": {
-//     alias: "grinding", des: "", img: "https://ravimachines.com/wp-content/uploads/2016/07/Bench-Grinder-0.5-HP-scaled.jpg"
-//   },
-//   "Cold Welding": {
-//     alias: "welding", des: "", img: "https://www.reliance-foundry.com/wp-content/uploads/Bearings-1.jpg"
-//   },
-//   "Gear and shaft desiging": {
-//     alias: "", des: "", img: "https://www.reliance-foundry.com/wp-content/uploads/Bearings-1.jpg"
-//   },
-//   "Gear and shaft desiging": {
-//     alias: "", des: "", img: "https://www.reliance-foundry.com/wp-content/uploads/Bearings-1.jpg"
-//   },
-//   "Gear and shaft desiging": {
-//     alias: "", des: "", img: "https://www.reliance-foundry.com/wp-content/uploads/Bearings-1.jpg"
-//   },  "Gear and shaft desiging": {
-//     alias: "", des: "", img: "https://www.reliance-foundry.com/wp-content/uploads/Bearings-1.jpg"
-//   }
-// }
+service_data = {
+  "On-line Leak": {
+    alias: "online leak", des: "", img: "https://leaksealing.com/wp-content/uploads/2016/06/DSC00049.jpg"
+  },
+  "On-line Leak": {
+    alias: "online leak", des: "", img: "https://leaksealing.com/wp-content/uploads/2016/06/DSC00049.jpg"
+  },
+  "On-line Leak": {
+    alias: "online leak", des: "", img: "https://leaksealing.com/wp-content/uploads/2016/06/DSC00049.jpg"
+  },
+  "Grinding and Machining": {
+    alias: "grinding", des: "", img: "https://ravimachines.com/wp-content/uploads/2016/07/Bench-Grinder-0.5-HP-scaled.jpg"
+  },
+  "Cold Welding": {
+    alias: "welding", des: "", img: "https://www.reliance-foundry.com/wp-content/uploads/Bearings-1.jpg"
+  },
+  "Gear and shaft desiging": {
+    alias: "", des: "", img: "https://www.reliance-foundry.com/wp-content/uploads/Bearings-1.jpg"
+  },
+  "Gear and shaft desiging": {
+    alias: "", des: "", img: "https://www.reliance-foundry.com/wp-content/uploads/Bearings-1.jpg"
+  },
+  "Gear and shaft desiging": {
+    alias: "", des: "", img: "https://www.reliance-foundry.com/wp-content/uploads/Bearings-1.jpg"
+  },  "Gear and shaft desiging": {
+    alias: "", des: "", img: "https://www.reliance-foundry.com/wp-content/uploads/Bearings-1.jpg"
+  }
+}
 function changeJSON(service_data){
   serviceData = []
   for (const [key, value] of Object.entries(service_data)) {
@@ -42,6 +42,10 @@ function changeJSON(service_data){
   }
   return serviceData
 }
+
+
+
+
 
 
 const router = Router();
@@ -75,15 +79,33 @@ router.get('/services', async (req, res) => {
 // router.use(isLoggedIn) then all routes in this router would be protected
 
 // Index Route with isLoggedIn middleware
-router.get("/", isLoggedIn, async (req, res) => {
-  const { username } = req.user; // get username from req.user property created by isLoggedIn middleware
+router.post("/reqTest",  async (req, res) => {
+  const { username } = req.body.username; // get username from req.user property created by isLoggedIn middleware
   //send all todos with that user
+  
   res.json(
     await Todo.find({ username }).catch((error) =>
       res.status(400).json({ error })
     )
   );
 });
+
+
+
+router.post("/quotationList",  async (req, res) => {
+  const { username } = req.body.username; // get username from req.user property created by isLoggedIn middleware
+  //send all todos with that user
+  console.log(req.body)
+  // console.log(await Todo.find({ username:req.body.username }))
+  res.json(
+    await Todo.find({ username:req.body.username }).catch((error) =>
+      res.status(400).json({ error })
+    )
+  );
+});
+
+
+
 
 // Show Route with isLoggedIn middleware
 router.get("/:id", isLoggedIn, async (req, res) => {
@@ -98,21 +120,22 @@ router.get("/:id", isLoggedIn, async (req, res) => {
 });
 
 // create Route with isLoggedIn middleware
-router.post("/request-quotation", isLoggedIn, async (req, res) => {
-  console.log(req.body)
-  const { username } = req.user; // get username from req.user property created by isLoggedIn middleware
-  req.body.username = username; // add username property to req.body
+router.post("/request-quotation", async (req, res) => {
+  console.log(req.session.usename)
+    req.body.username = req.body.email;
   //create new todo and send it in response
  
-  dataStruct = {unameExist: false,loggedin:true, success: false ,data: `Quotation request sent successfully`}
-   console.log(req.body)
+    dataStruct = {unameExist: false,loggedin:true, success: false ,data: `Quotation request sent successfully`}
+    req.body.quotation={}
+    req.body.quotation.status = "Pending";
+    console.log(req.body)
     await Todo.create(req.body)
     res.render('index',{dataStruct})
   
 });
 
 // update Route with isLoggedIn middleware
-router.put("/:id", isLoggedIn, async (req, res) => {
+router.put("/change-quoatation/:id", isLoggedIn, async (req, res) => {
   const { username } = req.user; // get username from req.user property created by isLoggedIn middleware
   req.body.username = username; // add username property to req.body
   const _id = req.params.id;
@@ -125,15 +148,22 @@ router.put("/:id", isLoggedIn, async (req, res) => {
 });
 
 // update Route with isLoggedIn middleware
-router.delete("/:id", isLoggedIn, async (req, res) => {
-  const { username } = req.user; // get username from req.user property created by isLoggedIn middleware
-  const _id = req.params.id;
-  //remove todo with same id if belongs to logged in User
-  res.json(
-    await Todo.remove({ username, _id }).catch((error) =>
-      res.status(400).json({ error })
-    )
-  );
+router.delete('/collection/:id', async (req, res) => {
+  const id = req.params.id;
+
+  try {
+    const todo = await Todo.findByIdAndDelete(id);
+    if (!todo) {
+      return res.status(404).json({ message: 'Todo not found' });
+    }
+    res.status(200).json({ message: 'Todo deleted successfully' });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: 'Error deleting todo' });
+  }
 });
+
+
+
 
 module.exports = router

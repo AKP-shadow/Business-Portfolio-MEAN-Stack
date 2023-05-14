@@ -33,11 +33,14 @@
   </thead>
   <tbody>
     <tr  ng-repeat="x in tableData track by $index">
-      <th scope="row">{{x.qno}}</th>
-      <td>{{x.date}}</td>
-      <td>{{x.desc}}</td>
-      <td>{{x.location}}</td>
-      <td>{{x.quoatation_Status}}</td>
+      <th scope="row">{{$index}}</th>
+      <td>{{getDate(x.time)}}</td>
+      <td>{{x.problemDescription}}</td>
+      <td>{{x.address.city}}</td>
+      <td>{{x.quotation.status}}</td>
+      <td><button class="delete-button-table" style="border: none; " ng-click="deleteRequest(x._id)">
+        <i class="fas fa-trash" ></i>
+      </button></td>
     </tr>
  
   </tbody>

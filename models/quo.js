@@ -2,12 +2,17 @@ const {Schema, model} = require("../db/connection") // import Schema & model
 
 // User Schema
 const TodoSchema = new Schema({
-    fullName: {
+  formID: String,
+  username: String,
+    name: {
       type: {
-        firstName: String,
-        lastName: String,
+        first: {
+          type:String,
+          required: true,
+        },
+        last: String,
       },
-      required: true,
+      
     },
     problemDescription: {
       type: String,
@@ -15,11 +20,11 @@ const TodoSchema = new Schema({
     },
     address: {
       type: {
-        streetAddress: String,
-        streetAddressLine2: String,
+        addr_line1: String,
+        addr_line2: String,
         city: String,
-        stateProvince: String,
-        postalZipcode: String,
+        state: String,
+        postal: String, 
       },
     },
     phoneNumber: {
@@ -38,12 +43,12 @@ const TodoSchema = new Schema({
     },
     quotation: {
       type: {
-        time: Date,
-        name: String,
+ 
+        status: String,
       },
     },
   });
-  
+   
 
 // User model
 const Todo = model("Todo", TodoSchema)

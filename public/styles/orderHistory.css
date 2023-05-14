@@ -120,3 +120,9 @@ th button:hover{
   background-color: rgba(94, 94, 94, 0.2);
 
 }
+delete-button-table{
+  display: none;
+}
+tr:hover + delete-button-table{
+  display: block;
+}
